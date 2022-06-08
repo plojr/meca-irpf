@@ -7,12 +7,14 @@
 package grp.meca.irpf.Models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,21 +34,32 @@ public class NotaDeCorretagem {
 	@Column(nullable = false)
 	private double valorLiquido;
 	
-	public NotaDeCorretagem() {
-		
-	}
+	@Transient
+	private List<Ordem> ordens;
+	
+	public NotaDeCorretagem() {}
 	
 	public NotaDeCorretagem(LocalDate date, double valorLiquido) {
 		this.date = date;
 		this.valorLiquido = valorLiquido;
 	}
 	
-	// TODO
+	// Valor bruto pode ser negativo, desde que as compras superem as vendas.
+	// Será positivo caso contrário.
 	@JsonIgnore
 	public double getValorBruto() {
-		return 0;
+		double value = 0.0;
+		for(Ordem ordem: ordens) {
+			if(ordem.getTipo() == 'c')
+				value -= ordem.getQuantidade()*ordem.getPreco();
+			else
+				value += ordem.getQuantidade()*ordem.getPreco();
+		}
+		return value;
 	}
 
+	// Apesar de as taxas serem algo que devemos pagar, neste código, 
+	// as considero com valor positivo.
 	@JsonIgnore
 	public double getTaxas() {
 		return getValorBruto() - getValorLiquido();
