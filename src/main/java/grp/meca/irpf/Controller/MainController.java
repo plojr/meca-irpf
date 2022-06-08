@@ -27,7 +27,7 @@ public class MainController {
 	
 	@GetMapping("/corretagens")
 	public String mostrarCorretagens(Model model) {
-		List<NotaDeCorretagem> corretagens = corretagemRepository.findAll();
+		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
 		for(NotaDeCorretagem nc: corretagens)
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc));
 		model.addAttribute("corretagens", corretagens);
