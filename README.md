@@ -1,5 +1,7 @@
 # MeCa-IRPF
 
+Status: em andamento.
+
 ## Resumo
 Este projeto é para aqueles que investem na Bolsa de Valores no Brasil e precisam de dados para declarar no software da Receita Federal. Ele é um dos módulos de um projeto pessoal chamado MeCa.
 
