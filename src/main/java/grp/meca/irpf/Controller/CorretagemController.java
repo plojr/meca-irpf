@@ -12,7 +12,7 @@ import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
 
 @Controller
-public class MainController {
+public class CorretagemController {
 	
 	@Autowired
 	private OrdemRepository ordemRepository;
@@ -33,6 +33,7 @@ public class MainController {
 		model.addAttribute("corretagens", corretagens);
 		return "corretagens";
 	}
+	
 	
 	
 }
