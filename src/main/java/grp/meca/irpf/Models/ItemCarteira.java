@@ -1,8 +1,10 @@
 /*
  * Uma carteira é uma lista de objetos de ItemCarteira, isto é, esta classe.
- * Um item de carteira é algo do tipo: 1000 cple3 a um custo total de R$ 6000.00.
+ * Um item de carteira é algo do tipo: 
+ * 	- 1000 cple3 a um custo total de R$ 6000.00.
+ *  - 5000 itsa4 a um custo total de R$ 50000.00.
+ *  - etc
  * A partir disso, é possível lançar este valor no programa da Receita Federal.
- * A String cnpj é para facilitar na hora de lançar o valor do ativo no campo "Bens e Direitos".
  */
 
 package grp.meca.irpf.Models;
@@ -31,7 +33,4 @@ public class ItemCarteira {
 	
 	@Column(nullable = false)
 	private double custoTotal;
-	
-	@Column(nullable = false)
-	private String cnpj;
 }
