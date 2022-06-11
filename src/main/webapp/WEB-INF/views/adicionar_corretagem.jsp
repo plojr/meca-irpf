@@ -60,8 +60,8 @@ function adicionarLinha() {
 	quantidadeLabel.innerHTML = "Quantidade: ";
 	var quantidadeInput = document.createElement("input");
 	quantidadeInput.setAttribute("type", "number");
-	quantidadeInput.setAttribute("min", 100);
-	quantidadeInput.setAttribute("step", 100);
+	quantidadeInput.setAttribute("min", 1);
+	quantidadeInput.setAttribute("step", 1);
 	quantidadeInput.setAttribute("name", "quantidade" + index);
 	quantidadeInput.setAttribute("id", "quantidade_input" + index);
 	quantidadeInput.setAttribute("class", "form-control");
