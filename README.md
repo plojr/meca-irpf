@@ -20,8 +20,11 @@ Esta aplicação não tem uma funcionalidade de converter os PDF das notas de co
 
 Esta aplicação contempla as bonificações, cisões, fusões e grupamentos. Eles devem e são levados em consideração nos cálculos.
 
+## Como devo lançar as notas de corretagem?
+
+
 ## Instruções
-Neste projeto, estou utilizando o lombok. Por isso, você precisará instalá-lo no programa - Eclipse, Spring Tool SUite etc - que você utilizará para codificar neste projeto.
+Neste projeto, estou utilizando o lombok. Por isso, você precisará instalá-lo no programa - Eclipse, Spring Tool Suite etc - que você utilizará para codificar neste projeto.
 
 ## Detalhes técnicos
 Este projeto foi criado no Spring Tool Suite 4. O banco de dados que utilizarei no projeto será o H2, simplesmente para teste.
