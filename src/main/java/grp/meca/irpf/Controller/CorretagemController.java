@@ -58,9 +58,15 @@ public class CorretagemController {
 				ticker = new Ticker(codigo);
 				tickerRepository.save(ticker);
 			}
-			Ordem ordem = new Ordem(parametros.get("tipo"+i).charAt(0), Integer.parseInt(parametros.get("quantidade"+i)),
+			try {
+				Ordem ordem = new Ordem(parametros.get("tipo"+i).charAt(0), Integer.parseInt(parametros.get("quantidade"+i)),
 					ticker, Double.parseDouble(parametros.get("preco"+i)), nc);
-			ordemRepository.save(ordem);
+				ordemRepository.save(ordem);
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+				model.addAttribute("mensagemDeErro", e.getMessage());
+				return "redirect:/erro";
+			}
 		}
 		// Pegar a lista de corretagens do banco para para poder mostrar na view.
 		// Lembrar de pegá-la ordenada.
