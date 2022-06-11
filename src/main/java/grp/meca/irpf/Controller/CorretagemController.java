@@ -3,7 +3,6 @@ package grp.meca.irpf.Controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
+import grp.meca.irpf.Models.Ticker;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
+import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
 public class CorretagemController {
+	
+	@Autowired
+	private TickerRepository tickerRepository;
 	
 	@Autowired
 	private OrdemRepository ordemRepository;
@@ -47,8 +51,15 @@ public class CorretagemController {
 				Double.parseDouble(parametros.get("valor_liquido"))));
 		//Adicionar cada ordem setando o valor da nota de corretagem
 		for(int i = 1; i <= Integer.parseInt(parametros.get("numero_de_ordens")); i++) {
+			System.out.println(i);
+			String codigo = parametros.get("ticker"+i);
+			Ticker ticker = tickerRepository.findByCodigo(codigo);
+			if(ticker == null) {
+				ticker = new Ticker(codigo);
+				tickerRepository.save(ticker);
+			}
 			Ordem ordem = new Ordem(parametros.get("tipo"+i).charAt(0), Integer.parseInt(parametros.get("quantidade"+i)),
-					parametros.get("ticker"+i), Double.parseDouble(parametros.get("preco"+i)), nc);
+					ticker, Double.parseDouble(parametros.get("preco"+i)), nc);
 			ordemRepository.save(ordem);
 		}
 		// Pegar a lista de corretagens do banco para para poder mostrar na view.
