@@ -6,6 +6,7 @@
 
 package grp.meca.irpf.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -36,8 +38,9 @@ public class Ordem {
 	@Column(nullable = false)
 	private int quantidade;
 	
-	@Column(nullable = false)
-	private String ticker;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ticker_id", nullable = false)
+	private Ticker ticker;
 	
 	@Column(nullable = false)
 	private double preco;
@@ -52,7 +55,7 @@ public class Ordem {
 		
 	}
 	
-	public Ordem(char tipo, int quantidade, String ticker, double preco, NotaDeCorretagem notaDeCorretagem) {
+	public Ordem(char tipo, int quantidade, Ticker ticker, double preco, NotaDeCorretagem notaDeCorretagem) {
 		this.tipo = tipo;
 		this.quantidade = quantidade;
 		this.ticker = ticker;

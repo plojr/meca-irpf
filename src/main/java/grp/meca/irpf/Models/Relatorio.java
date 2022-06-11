@@ -19,6 +19,11 @@ public class Relatorio {
 	private double prejuizoAcumuladoDayTrade;
 	
 	// TODO
+	public Relatorio(List<NotaDeCorretagem> corretagens) {
+		
+	}
+	
+	// TODO
 	public double getSomaLucroSwingTradeIsento() {
 		double lucro = 0;
 		
