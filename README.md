@@ -22,7 +22,6 @@ Esta aplicação contempla as bonificações, cisões, fusões e grupamentos. El
 
 ## Instruções
 Neste projeto, estou utilizando o lombok. Por isso, você precisará instalá-lo no programa - Eclipse, Spring Tool SUite etc - que você utilizará para codificar neste projeto.
-Para rodar este projeto, você precisa executar o comando "java - jar /diretorio/para/jar/nome-do-arquivo.jar
 
 ## Detalhes técnicos
 Este projeto foi criado no Spring Tool Suite 4. O banco de dados que utilizarei no projeto será o H2, simplesmente para teste.
