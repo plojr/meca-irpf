@@ -12,7 +12,7 @@ Não usem esta aplicação como verdade absoluta. Eu estudei como calcular cada 
 Eu nunca fiz um cálculo manual para lançar estes dados no programa da Receita Federal e utilizo o algoritmo desta aplicação há mais de 5 anos. Nunca tive problemas com os dados declarados para a Receita Federal. Espero continuar assim. :-)
 
 ## Objetivo
-O intuito desta aplicação é fornecer os dados que você precisa lançar no programa da Receita Federal, em "Bens e Direitos" e também na parte de "Renda Variável". Em "Bens e Direitos", serão lançados seus ativos, o CNPJ da empresa e a situação no dia 31/12. Em "Renda Variável", será possível lançar o lucro acumulado para as vendas em até 20.000,00, os prejuízos de cada mês, o lucro mensal - e também o imposto de renda que deverá pagar em cima dele - para vendas que ultrapassar os 20.000,00 e também os lucros e prejuízos que obtiver nos day trade.
+O intuito desta aplicação é fornecer os dados que você precisa lançar no programa da Receita Federal, em "Bens e Direitos" e também na parte de "Renda Variável". Em "Bens e Direitos", serão lançados seus ativos, o CNPJ da empresa e a situação no dia 31/12. Em "Renda Variável", será possível lançar o lucro acumulado para as vendas em até 20.000,00, os prejuízos de cada mês, o lucro mensal - e também o imposto de renda que deverá pagar em cima dele - para vendas que ultrapassarem os 20.000,00 e também os lucros e prejuízos que obtiver nos day trade.
 
 Esta aplicação não contempla o lançamento dos dividendos e jscp. Isso é feito em outro módulo que codifiquei, o MeCa Dividendos.
 
