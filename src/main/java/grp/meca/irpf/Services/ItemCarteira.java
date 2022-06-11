@@ -7,14 +7,21 @@
  * A partir disso, é possível lançar este valor no programa da Receita Federal.
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Services;
 
 import lombok.Data;
 
 @Data
 public class ItemCarteira {
 
-	private Ticker ticker;
+	private String ticker;
 	private int quantidade;
 	private double custoTotal;
+	
+	public ItemCarteira(String ticker, int quantidade, double custoTotal) {
+		super();
+		this.ticker = ticker;
+		this.quantidade = quantidade;
+		this.custoTotal = custoTotal;
+	}
 }
