@@ -15,15 +15,42 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Cnpj {
+(name = "tickers")
+public class Ticker {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(nullable = false)
-	private String ticker;
+	private String codigo;
 	
 	@Column(nullable = false)
 	private String cnpj;
+	
+	@Column(nullable = false)
+	private boolean bdr;
+	
+	public Ticker() {
+		this("fake3", "00.000.000/0000-00", false);
+	}
+
+	public Ticker(String codigo, String cnpj, boolean bdr) {
+		super();
+		this.codigo = codigo;
+		this.cnpj = cnpj;
+		this.bdr = bdr;
+	}
+
+	public Ticker(String codigo, boolean bdr) {
+		super();
+		this.codigo = codigo;
+		this.bdr = bdr;
+		this.cnpj = "00.000.000/0000-00";
+	}
+	
+	public Ticker(String codigo) {
+		this(codigo, false);
+	}
+	
 }
