@@ -20,7 +20,13 @@ public class RelatorioController {
 	@GetMapping("/dados_declaracao")
 	public String mostrarDadosDeclaracao(Model model) {
 		List<NotaDeCorretagem> corretagens = corretagemRepository.findAll();
-		Relatorio relatorio = new Relatorio(corretagens);
+		Relatorio relatorio = null;
+		try {
+			relatorio = new Relatorio(corretagens);
+		} catch(Exception e) {
+			model.addAttribute("mensagemDeErro", e.getMessage());
+			return "redirect:/erro";
+		}
 		model.addAttribute("relatorio", relatorio);
 		return "relatorio";
 	}
