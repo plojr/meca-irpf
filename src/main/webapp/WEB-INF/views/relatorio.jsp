@@ -1,12 +1,12 @@
-<jsp:include page="header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<title>Dados para a Receita Federal</title>
-<script>
+<jsp:include page="header.jsp" />
+<style>
 th,td {
 	text-align: center
 }
-</script>
+</style>
+<title>Dados para a Receita Federal</title>
 </head>
 <body>
 <div class="container-fluid">
