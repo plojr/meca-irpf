@@ -9,6 +9,6 @@
 </head>
 <body>
 	<p>Ops, algo deu errado.</p>
-	<div><c:out value="${mensagemDeErro}"></c:out></div>
+	<div>Mensagem: <c:out value="${mensagemDeErro}"></c:out></div>
 </body>
 </html>
