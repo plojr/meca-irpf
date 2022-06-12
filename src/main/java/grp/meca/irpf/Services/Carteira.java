@@ -20,7 +20,7 @@ public class Carteira {
 	 */
 	private Map<String, Pair<Integer, Double>> carteira;
 	
-	public void getCarteira(List<NotaDeCorretagem> corretagens) {
+	public void getCarteira(List<NotaDeCorretagem> corretagens) throws Exception {
 		carteira = new HashMap<>();
 		for(NotaDeCorretagem corretagem: corretagens) {
 			List<Ordem> ordens = SwingTrade.getOrdensSwingTrade(corretagem);
@@ -29,12 +29,11 @@ public class Carteira {
 				int quantidade = 0;
 				double custoTotal = 0;
 				try {
-					Pair<Integer, Double> qc = getQuantidadeCusto(ordem);
+					Pair<Integer, Double> qc = getAtualizacaoDeQuantidadeCusto(ordem);
 					quantidade = qc.getFirst();
 					custoTotal = qc.getSecond();
 				} catch(Exception e) {
-					System.out.println(e.getMessage());
-					return;
+					throw new Exception(e.getMessage());
 				}
 				// O novo custo total será nova quantidade * (Custo total anterior / quantidade anterior)
 				// (Custo total anterior / quantidade anterior) é o preço médio antes da atualização de quantidade e custo total.
@@ -44,7 +43,7 @@ public class Carteira {
 	}
 
 	// Dadas a ordem e a quantidade de um ticker, calcular a nova quantidade.
-	private Pair<Integer, Double> getQuantidadeCusto(Ordem ordem) throws Exception {
+	private Pair<Integer, Double> getAtualizacaoDeQuantidadeCusto(Ordem ordem) throws Exception {
 		String codigo = ordem.getTicker().getCodigo();
 		int quantidade = ordem.getQuantidade();
 		double custoTotal;
@@ -52,7 +51,7 @@ public class Carteira {
 			if(!carteira.containsKey(codigo) || carteira.get(codigo).getFirst() == 0)
 				throw new Exception("Está tentando vender a ação " + codigo + " sem tê-la!");
 			if(quantidade > carteira.get(codigo).getFirst())
-				throw new Exception("Está tentando vender mais ações de " + codigo + " do que tem.");
+				throw new Exception("Está tentando vender mais ações de " + codigo + " do que tem em carteira!");
 			quantidade = carteira.get(codigo).getFirst() - quantidade;
 			custoTotal = quantidade*(carteira.get(codigo).getSecond()/carteira.get(codigo).getFirst());
 		}
