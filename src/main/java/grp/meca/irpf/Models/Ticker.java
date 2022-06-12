@@ -32,7 +32,7 @@ public class Ticker {
 	private boolean bdr;
 	
 	public Ticker() {
-		this("fake3", "00.000.000/0000-00", false);
+		this("fake3", "00000000000000", false);
 	}
 
 	public Ticker(String codigo, String cnpj, boolean bdr) {
@@ -46,7 +46,7 @@ public class Ticker {
 		super();
 		this.codigo = codigo;
 		this.bdr = bdr;
-		this.cnpj = "00.000.000/0000-00";
+		this.cnpj = "00000000000000";
 	}
 	
 	public Ticker(String codigo) {

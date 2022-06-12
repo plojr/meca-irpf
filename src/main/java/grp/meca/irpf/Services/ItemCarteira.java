@@ -5,6 +5,7 @@
  *  - 5000 itsa4 a um custo total de R$ 50000.00.
  *  - etc
  * A partir disso, é possível lançar este valor no programa da Receita Federal.
+ * Esta classe será usada no arquivo JSP de relatório.
  */
 
 package grp.meca.irpf.Services;
