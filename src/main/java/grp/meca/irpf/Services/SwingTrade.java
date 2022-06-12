@@ -33,6 +33,7 @@ public class SwingTrade implements Trade {
 	 * médio ponderado e a quantidade igual à soma da quantidade das três ordens.
 	 */
 	public static List<Ordem> getOrdensSwingTrade(NotaDeCorretagem corretagem) {
+		double taxas = corretagem.getTaxas(), valorBrutoDaCorretagem = corretagem.getValorBruto();
 		List<Ordem> ordens = new ArrayList<>();
 		Map<String, Pair<Integer, Double>> notaConsolidadaCompras = new HashMap<>(), notaConsolidadaVendas = new HashMap<>();
 		Set<String> tickers = new LinkedHashSet<>();
@@ -50,8 +51,10 @@ public class SwingTrade implements Trade {
 			 * Será null somente no caso de haver um day trade, onde a quantidade de ações compradas
 			 * é igual à quantidade de ações vendidas. 
 			 */
-			if(ordem != null)
+			if(ordem != null) {
+				ordem.setTaxas(taxas*(ordem.getPreco()*ordem.getQuantidade()/Math.abs(valorBrutoDaCorretagem)));
 				ordens.add(ordem);
+			}
 		}
 		return ordens;
 	}
