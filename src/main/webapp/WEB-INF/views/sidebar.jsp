@@ -21,6 +21,14 @@
                         <a href="dados_declaracao" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Dados para a declaração</span></a>
                     </li>
+                    <li>
+                        <a href="adicionar_ticker" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar ticker</span></a>
+                    </li>
+                    <li>
+                        <a href="editar_ticker" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Editar ticker</span></a>
+                    </li>
                     <!-- li>
                         <a href="teste" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Adicionar valores aleatórios</span> </a>

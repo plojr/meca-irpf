@@ -16,12 +16,14 @@ th,td {
 			<table class="table table-bordered">
 				<tr>
 					<th>Ticker</th>
+					<th>CNPJ</th>
 					<th>Quantidade</th>
 					<th>Custo total</th>
 				</tr>
 				<c:forEach items="${carteira}" var="itemCarteira">
 				<tr>
 					<td><c:out value="${itemCarteira.ticker}"></c:out></td>
+					<td><c:out value="${itemCarteira.cnpj}"></c:out></td>
 					<td><c:out value="${itemCarteira.quantidade}"></c:out></td>
 					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${itemCarteira.custoTotal}" /></td>
 				</tr>

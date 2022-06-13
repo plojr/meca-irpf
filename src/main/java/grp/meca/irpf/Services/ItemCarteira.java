@@ -16,12 +16,14 @@ import lombok.Data;
 public class ItemCarteira {
 
 	private String ticker;
+	private String cnpj;
 	private int quantidade;
 	private double custoTotal;
 	
-	public ItemCarteira(String ticker, int quantidade, double custoTotal) {
+	public ItemCarteira(String ticker, String cnpj, int quantidade, double custoTotal) {
 		super();
 		this.ticker = ticker;
+		this.cnpj = cnpj;
 		this.quantidade = quantidade;
 		this.custoTotal = custoTotal;
 	}

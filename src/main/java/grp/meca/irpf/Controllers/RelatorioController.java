@@ -1,4 +1,4 @@
-package grp.meca.irpf.Controller;
+package grp.meca.irpf.Controllers;
 
 import java.util.List;
 
@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Relatorio;
+import grp.meca.irpf.Models.Ticker;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
+import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
 public class RelatorioController {
@@ -20,6 +22,9 @@ public class RelatorioController {
 	
 	@Autowired
 	private OrdemRepository ordemRepository;
+	
+	@Autowired
+	private TickerRepository tickerRepository;
 	
 	@GetMapping("/dados_declaracao")
 	public String mostrarDadosDeclaracao(Model model) {
@@ -34,7 +39,7 @@ public class RelatorioController {
 			model.addAttribute("mensagemDeErro", e.getMessage());
 			return "erro";
 		}
-		model.addAttribute("carteira", relatorio.getCarteira().getItensCarteira());
+		model.addAttribute("carteira", relatorio.getCarteira().getItensCarteira(Ticker.getMapCodigoCnpj(tickerRepository.findAll())));
 		return "relatorio";
 	}
 }

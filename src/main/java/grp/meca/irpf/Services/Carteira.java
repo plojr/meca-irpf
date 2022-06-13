@@ -86,7 +86,7 @@ public class Carteira {
 		return Pair.of(quantidade, custoTotal + ordem.getTaxas());
 	}
 	
-	public List<ItemCarteira> getItensCarteira() {
+	public List<ItemCarteira> getItensCarteira(Map<String, String> tickerCnpj) {
 		List<ItemCarteira> itensCarteira = new ArrayList<>();
 		for(Entry<String, Pair<Integer, Double>> entry: carteira.entrySet()) {
 			/*
@@ -94,7 +94,8 @@ public class Carteira {
 			 *  igual a zero. Não há interesse nesses, portanto é para ignorá-los.
 			 */
 			if(entry.getValue().getFirst() != 0)
-				itensCarteira.add(new ItemCarteira(entry.getKey(), entry.getValue().getFirst(), entry.getValue().getSecond()));
+				itensCarteira.add(new ItemCarteira(entry.getKey(), tickerCnpj.get(entry.getKey()), 
+						entry.getValue().getFirst(), entry.getValue().getSecond()));
 		}
 		return itensCarteira;
 	}

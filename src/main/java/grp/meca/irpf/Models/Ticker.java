@@ -5,6 +5,10 @@
 
 package grp.meca.irpf.Models;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,23 +38,40 @@ public class Ticker {
 	public Ticker() {
 		this("fake3", "00000000000000", false);
 	}
+	
+	public Ticker(int id, String codigo, String cnpj, boolean bdr) {
+		this.id = id;
+		this.codigo = codigo;
+		if(cnpj == null || cnpj.equals(""))
+			this.cnpj = "00000000000000";
+		else
+			this.cnpj = cnpj;
+		this.bdr = bdr;
+	}
 
 	public Ticker(String codigo, String cnpj, boolean bdr) {
 		super();
 		this.codigo = codigo;
-		this.cnpj = cnpj;
+		if(cnpj == null || cnpj.equals(""))
+			this.cnpj = "00000000000000";
+		else
+			this.cnpj = cnpj;
 		this.bdr = bdr;
 	}
 
 	public Ticker(String codigo, boolean bdr) {
-		super();
-		this.codigo = codigo;
-		this.bdr = bdr;
-		this.cnpj = "00000000000000";
+		this(codigo, "00000000000000", bdr);
 	}
 	
 	public Ticker(String codigo) {
-		this(codigo, false);
+		this(codigo, "00000000000000", false);
+	}
+	
+	public static Map<String, String> getMapCodigoCnpj(List<Ticker> tickers) {
+		Map<String, String> tickerCnpj = new HashMap<>();
+		for(Ticker ticker: tickers)
+			tickerCnpj.put(ticker.getCodigo(), ticker.getCnpj());
+		return tickerCnpj;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package grp.meca.irpf.Controller;
+package grp.meca.irpf.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
