@@ -6,7 +6,7 @@ import java.util.List;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 
-public class DayTrade implements Trade {
+public class DayTrade extends Trade {
 
 	@Override
 	public double getImposto() {
