@@ -15,7 +15,7 @@ public class Carteira {
 	
 	/*
 	 *  A variável quantidadeCusto guardará a quantidade e custo total, dada um ticker.
-	 *  Exemplo: se tiver 1000 ações de xpto3 a um custo de 10000.00, 500 ações de abcd3 a 20000.00, etc
+	 *  Exemplo: se tiver 1000 ações de xpto3 a um custo de 10000.00, 500 ações de abcd3 a 20000.00 etc
 	 *  então: quantidadeCusto["xpto3"] = Pair(1000, 10000), quantidadeCusto["abcd3"] = Pair(500, 20000) etc.
 	 */
 	private Map<String, Pair<Integer, Double>> carteira;
@@ -86,6 +86,10 @@ public class Carteira {
 		return Pair.of(quantidade, custoTotal + ordem.getTaxas());
 	}
 	
+	/*
+	 * Esta função será usada para retornar uma lista de ItemCarteira para os dados
+	 * serem apresentados na view de relatório.
+	 */
 	public List<ItemCarteira> getItensCarteira(Map<String, String> tickerCnpj) {
 		List<ItemCarteira> itensCarteira = new ArrayList<>();
 		for(Entry<String, Pair<Integer, Double>> entry: carteira.entrySet()) {
