@@ -13,7 +13,7 @@ import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
 
-public class SwingTrade extends Trade {
+public class SwingTradeService extends TradeService {
 
 	@Override
 	public double getImposto() {

@@ -3,7 +3,7 @@ package grp.meca.irpf.Models;
 import java.util.List;
 import java.util.Map;
 
-import grp.meca.irpf.Services.Carteira;
+import grp.meca.irpf.Pojos.Carteira;
 import lombok.Data;
 
 @Data
@@ -20,7 +20,7 @@ public class Relatorio {
 	// TODO
 	public Relatorio(List<NotaDeCorretagem> corretagens) throws Exception {
 		this.carteira = new Carteira();
-		this.carteira.getCarteira(corretagens);
+		this.carteira.setCarteira(corretagens);
 	}
 	
 	// TODO

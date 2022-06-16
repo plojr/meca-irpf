@@ -7,8 +7,21 @@ import org.springframework.data.util.Pair;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
+import lombok.Data;
 
-public abstract class Trade {
+@Data
+public abstract class TradeService {
+	
+	/*
+	 * Esta variável será do tipo "janeiro" => 1000.0, "fevereiro" => -400.0 etc.
+	 */
+	protected Map<String, Double> lucroMensal;
+	
+	/*
+	 * A Receita te permite abater, dos lucros futuros, o prejuízo acumulado que
+	 * você, eventualmente, tenha.
+	 */
+	protected double prejuizoAcumulado;
 	
 	// Retornar o imposto a ser pago.
 	public abstract double getImposto();

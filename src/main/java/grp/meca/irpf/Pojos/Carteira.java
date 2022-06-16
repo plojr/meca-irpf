@@ -1,4 +1,4 @@
-package grp.meca.irpf.Services;
+package grp.meca.irpf.Pojos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import org.springframework.data.util.Pair;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
+import grp.meca.irpf.Services.SwingTradeService;
 
 public class Carteira {
 	
@@ -20,30 +21,29 @@ public class Carteira {
 	 */
 	private Map<String, Pair<Integer, Double>> carteira;
 	
-	public void getCarteira(List<NotaDeCorretagem> corretagens) throws Exception {
+	public void setCarteira(List<NotaDeCorretagem> corretagens) throws Exception {
 		carteira = new HashMap<>();
 		for(NotaDeCorretagem corretagem: corretagens) {
 			/*
 			 * Para calcular a carteira, é preciso excluir os day trades, pois eles são calculados à parte.
-			 * A função getOrdensSwingTrade elimina todos os day trades, retornando apenas as ordens relativas ao swing trade.
+			 * A função getOrdensSwingTrade elimina todos os day trades, retornando apenas as ordens 
+			 * relativas ao swing trade.
 			 */
-			List<Ordem> ordens = SwingTrade.getOrdensSwingTrade(corretagem);
+			List<Ordem> ordens = SwingTradeService.getOrdensSwingTrade(corretagem);
 			for(Ordem ordem: ordens) {
 				if(ordem == null)
-					throw new Exception("Carteira.getCarteira(): variável ordem é null!");
-				String codigo = ordem.getTicker().getCodigo();
-				int quantidade = 0;
-				double custoTotal = 0;
+					throw new Exception("Carteira.setCarteira(): variável ordem é null!");
 				try {
 					Pair<Integer, Double> qc = getAtualizacaoDeQuantidadeCusto(ordem);
-					quantidade = qc.getFirst();
-					custoTotal = qc.getSecond();
+					/* 
+					 * O novo custo total será nova quantidade * (Custo total anterior / quantidade anterior)
+					 * (Custo total anterior / quantidade anterior) é o preço médio antes da
+					 * atualização de quantidade e custo total. 
+					 */ 
+					carteira.put(ordem.getTicker().getCodigo(), Pair.of(qc.getFirst(), qc.getSecond()));
 				} catch(Exception e) {
-					throw new Exception("Carteira.getCarteira(): " + e.getMessage());
+					throw new Exception("Carteira.setCarteira(): " + e.getMessage());
 				}
-				// O novo custo total será nova quantidade * (Custo total anterior / quantidade anterior)
-				// (Custo total anterior / quantidade anterior) é o preço médio antes da atualização de quantidade e custo total.
-				carteira.put(codigo, Pair.of(quantidade, custoTotal));
 			}
 		}
 	}

@@ -20,7 +20,7 @@
  * e uso esta classe para apresentação na view.
  */
 
-package grp.meca.irpf.Services;
+package grp.meca.irpf.Pojos;
 
 import lombok.Data;
 
