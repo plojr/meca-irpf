@@ -6,6 +6,18 @@
  *  - etc
  * A partir disso, é possível lançar este valor no programa da Receita Federal.
  * Esta classe será usada no arquivo JSP de relatório.
+ * 
+ * Por que não usar esta classe, para representar uma carteira, em todo o código?
+ * A resposta está em eficiência. Para atualizar a quantidade e custo total de um ticker,
+ * será necessário percorrer toda a lista de ItemCarteira para encontrar o ticker em questão.
+ * Outra opção, mais eficiente, seria ter um Map de String (representando o ticker) 
+ * para ItemCarteira. Isso acrescenta uma redundância de dados já que ItemCarteira já contém
+ * uma String para o ticker. Com isso, vem a ideia de retirar o ticker de ItemCarteira para
+ * usar esta ideia de usar o Map. Algo similar é feito no código, principalmente nas classes
+ * do tipo Trade.
+ * 
+ * Com isso, eu mantenho uma estrutura de Map para fazer os cálculos, por questão de eficiência,
+ * e uso esta classe para apresentação na view.
  */
 
 package grp.meca.irpf.Services;
