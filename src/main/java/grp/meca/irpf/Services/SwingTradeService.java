@@ -30,7 +30,7 @@ public class SwingTradeService extends TradeService {
 	 * A nota consolidada está explicada na classe Trade.
 	 */
 	public static List<Ordem> getOrdensSwingTrade(NotaDeCorretagem corretagem) {
-		double taxas = corretagem.getTaxas(), valorBrutoDaCorretagem = corretagem.getValorBruto();
+		//double taxas = corretagem.getTaxas(), valorBrutoDaCorretagem = corretagem.getValorBruto();
 		/*
 		 * Uma nota de corretagem pode conter várias ordens do mesmo ticker.
 		 * Para simplificar, as ordens de compra foram consolidadas na variável notaConsolidadaCompras
@@ -51,7 +51,8 @@ public class SwingTradeService extends TradeService {
 			 * Com isso, se ordem for null, é para ignorar.
 			 */
 			if(ordem != null) {
-				ordem.setTaxas(taxas*(ordem.getPreco()*ordem.getQuantidade()/Math.abs(valorBrutoDaCorretagem)));
+				//ordem.setTaxas(taxas*(ordem.getPreco()*ordem.getQuantidade()/Math.abs(valorBrutoDaCorretagem)));
+				ordem.setTaxas(corretagem.getTaxaDaOrdem(ordem.getPreco()*ordem.getQuantidade()));
 				ordens.add(ordem);
 			}
 		}

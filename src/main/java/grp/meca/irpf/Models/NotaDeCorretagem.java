@@ -65,4 +65,11 @@ public class NotaDeCorretagem {
 		return getValorBruto() - getValorLiquido();
 	}
 	
+	public double getTaxaDaOrdem(double valorDeOrdem) {
+		double valorAbsolutoDaCorretagem = 0;
+		for(Ordem ordem: ordens)
+			valorAbsolutoDaCorretagem += ordem.getPreco()*ordem.getQuantidade();
+		return getTaxas()*valorDeOrdem/valorAbsolutoDaCorretagem;
+	}
+	
 }

@@ -48,7 +48,7 @@ th,td {
 					<tr>
 						<td><c:out value="${ano.key}"></c:out></td>
 						<td><c:out value="${mesLucro.key}"></c:out></td>
-						<td><c:out value="${mesLucro.value}"></c:out></td>
+						<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${mesLucro.value}" /></td>
 					</tr>
 				</c:forEach>
 			</c:forEach>

@@ -21,6 +21,7 @@ public class DayTradeService extends TradeService {
 		this.lucro = new HashMap<>();
 		this.imposto = new HashMap<>();
 		for(NotaDeCorretagem corretagem: corretagens) {
+			//double taxas = corretagem.getTaxas(), valorBrutoDaCorretagem = corretagem.getValorBruto();
 			List<Ordem> ordensDayTrade = getOrdensDayTrade(corretagem);
 			/*
 			 * Este Map<String, Double> é para auxiliar na hora de percorrer cada lista de ordem.
@@ -28,14 +29,16 @@ public class DayTradeService extends TradeService {
 			 */
 			Map<String, Double> lucroDiario = new HashMap<>();
 			for(Ordem ordem: ordensDayTrade) {
-				double valorOrdem = 0;
+				double valor = 0, valorDaOrdem = ordem.getPreco()*ordem.getQuantidade();
+				//double taxaDaOrdem = taxas*valorDaOrdem/Math.abs(valorBrutoDaCorretagem);
+				double taxaDaOrdem = corretagem.getTaxaDaOrdem(valorDaOrdem);
 				if(lucroDiario.containsKey(ordem.getTicker().getCodigo()))
-					valorOrdem = lucroDiario.get(ordem.getTicker().getCodigo());
+					valor = lucroDiario.get(ordem.getTicker().getCodigo());
 				if(ordem.getTipo() == 'c')
-					valorOrdem += -1*(ordem.getQuantidade()*ordem.getPreco());
+					valor += -1*valorDaOrdem - taxaDaOrdem;
 				else
-					valorOrdem += (ordem.getQuantidade()*ordem.getPreco());
-				lucroDiario.put(ordem.getTicker().getCodigo(), valorOrdem);
+					valor += valorDaOrdem - taxaDaOrdem;
+				lucroDiario.put(ordem.getTicker().getCodigo(), valor);
 			}
 			int mes = corretagem.getDate().getMonthValue(), ano = corretagem.getDate().getYear();
 			for(Entry<String, Double> entry: lucroDiario.entrySet())
