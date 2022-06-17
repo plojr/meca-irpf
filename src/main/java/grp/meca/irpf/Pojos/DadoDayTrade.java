@@ -1,10 +1,10 @@
 package grp.meca.irpf.Pojos;
 
-public class DayTrade extends Trade {
+public class DadoDayTrade extends DadoTrade {
 	
 	private static double prejuizoAcumulado;
 	
-	public DayTrade(int mes, int ano, double lucro, double imposto) {
+	public DadoDayTrade(int mes, int ano, double lucro, double imposto) {
 		super(mes, ano, lucro, imposto);
 	}
 
@@ -13,7 +13,7 @@ public class DayTrade extends Trade {
 	}
 	
 	public static void setPrejuizoAcumulado(double prejuizoAcumulado) {
-		DayTrade.prejuizoAcumulado = prejuizoAcumulado;
+		DadoDayTrade.prejuizoAcumulado = prejuizoAcumulado;
 	}
 	
 }

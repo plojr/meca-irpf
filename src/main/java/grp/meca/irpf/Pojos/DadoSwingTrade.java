@@ -1,12 +1,12 @@
 package grp.meca.irpf.Pojos;
 
-public class SwingTrade extends Trade {
+public class DadoSwingTrade extends DadoTrade {
 
 	private double venda;
 	
 	private static double prejuizoAcumulado;
 	
-	public SwingTrade(int mes, int ano, double lucro, double imposto, double venda) {
+	public DadoSwingTrade(int mes, int ano, double lucro, double imposto, double venda) {
 		super(mes, ano, lucro, imposto);
 		this.venda = venda;
 	}
@@ -16,7 +16,7 @@ public class SwingTrade extends Trade {
 	}
 	
 	public static void setPrejuizoAcumulado(double prejuizoAcumulado) {
-		SwingTrade.prejuizoAcumulado = prejuizoAcumulado;
+		DadoSwingTrade.prejuizoAcumulado = prejuizoAcumulado;
 	}
 	
 	public double getVenda() {

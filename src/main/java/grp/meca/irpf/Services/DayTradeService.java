@@ -13,7 +13,7 @@ import org.springframework.data.util.Pair;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
-import grp.meca.irpf.Pojos.DayTrade;
+import grp.meca.irpf.Pojos.DadoDayTrade;
 
 public class DayTradeService extends TradeService {
 
@@ -99,18 +99,18 @@ public class DayTradeService extends TradeService {
 		return ordens;
 	}
 
-	public List<DayTrade> getDayTradeList() {
-		List<DayTrade> dayTradeList = new ArrayList<>();
+	public List<DadoDayTrade> getDayTradeList() {
+		List<DadoDayTrade> dayTradeList = new ArrayList<>();
 		for(Entry<Integer, Map<Integer, Pair<Double, Double>>> anoLucroImposto: this.lucroImposto.entrySet()) {
 			for(Entry<Integer, Pair<Double, Double>> mesLucroImposto: anoLucroImposto.getValue().entrySet()) {
 				int ano = anoLucroImposto.getKey();
 				int mes = mesLucroImposto.getKey();
 				double lucro = mesLucroImposto.getValue().getFirst();
 				double imposto = mesLucroImposto.getValue().getSecond();
-				dayTradeList.add(new DayTrade(mes, ano, lucro, imposto));
+				dayTradeList.add(new DadoDayTrade(mes, ano, lucro, imposto));
 			}
 		}
-		DayTrade.setPrejuizoAcumulado(this.prejuizoAcumulado);
+		DadoDayTrade.setPrejuizoAcumulado(this.prejuizoAcumulado);
 		return dayTradeList;
 	}
 	

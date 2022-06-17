@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ticker;
-import grp.meca.irpf.Pojos.DayTrade;
+import grp.meca.irpf.Pojos.DadoDayTrade;
 import grp.meca.irpf.Pojos.Relatorio;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
@@ -44,8 +44,8 @@ public class RelatorioController {
 			return "erro";
 		}
 		model.addAttribute("carteira", relatorio.getCarteira().getItensCarteira(Ticker.getMapCodigoCnpj(tickerRepository.findAll())));
-		model.addAttribute("dayTrade", relatorio.getDayTradeList());
-		model.addAttribute("prejuizoAcumulado", DayTrade.getPrejuizoAcumulado());
+		model.addAttribute("dayTrade", relatorio.getDadoDayTradeList());
+		model.addAttribute("prejuizoAcumulado", DadoDayTrade.getPrejuizoAcumulado());
 		return "relatorio";
 	}
 }

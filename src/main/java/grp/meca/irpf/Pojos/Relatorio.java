@@ -10,14 +10,14 @@ import lombok.Data;
 public class Relatorio {
 
 	private Carteira carteira;
-	private List<DayTrade> dayTradeList;
+	private List<DadoDayTrade> dadoDayTradeList;
 	
 	public Relatorio(List<NotaDeCorretagem> corretagens) throws Exception {
 		this.carteira = new Carteira();
 		this.carteira.setCarteira(corretagens);
 		DayTradeService dayTradeSrv = new DayTradeService();
 		dayTradeSrv.calculaDadosDoTrade(corretagens);
-		dayTradeList = dayTradeSrv.getDayTradeList();
+		dadoDayTradeList = dayTradeSrv.getDayTradeList();
 	}
 	
 }
