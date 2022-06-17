@@ -12,6 +12,7 @@ import org.springframework.data.util.Pair;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
+import grp.meca.irpf.Models.Ticker;
 
 public class DayTradeService extends TradeService {
 
@@ -46,7 +47,7 @@ public class DayTradeService extends TradeService {
 		return 0.20;
 	}
 
-	public static List<Ordem> getOrdensDayTrade(NotaDeCorretagem corretagem) {
+	private static List<Ordem> getOrdensDayTrade(NotaDeCorretagem corretagem) {
 		List<Ordem> ordens = new ArrayList<>();
 		/*
 		 * Uma nota de corretagem pode conter várias ordens do mesmo ticker.
@@ -59,7 +60,31 @@ public class DayTradeService extends TradeService {
 		// Set para guardar os tickers de forma única e poder acessá-los posteriormente.
 		Set<String> tickers = new LinkedHashSet<>();
 		atualizarNotasDeCorretagem(notaConsolidadaCompras, notaConsolidadaVendas, tickers, corretagem);
-		
+		for(String ticker: tickers) {
+			List<Ordem> ordensDayTrade = getOrdensDayTradeByTicker(ticker, notaConsolidadaCompras, notaConsolidadaVendas);
+			if(ordensDayTrade.size() != 0)
+				ordens.addAll(ordensDayTrade);
+		}
+		return ordens;
+	}
+
+	private static List<Ordem> getOrdensDayTradeByTicker(String ticker,
+			Map<String, Pair<Integer, Double>> notaConsolidadaCompras,
+			Map<String, Pair<Integer, Double>> notaConsolidadaVendas) {
+		List<Ordem> ordens = new ArrayList<>();
+		if(notaConsolidadaCompras.containsKey(ticker) && notaConsolidadaVendas.containsKey(ticker)) {
+			int quantidade = Math.min(notaConsolidadaCompras.get(ticker).getFirst(), notaConsolidadaVendas.get(ticker).getFirst());
+			double precoMedioCompra = notaConsolidadaCompras.get(ticker).getSecond()/notaConsolidadaCompras.get(ticker).getFirst();
+			double precoMedioVenda = notaConsolidadaVendas.get(ticker).getSecond()/notaConsolidadaVendas.get(ticker).getFirst();
+			try {
+				Ordem ordemVenda = new Ordem('v', quantidade, new Ticker(ticker), precoMedioVenda, null);
+				Ordem ordemCompra = new Ordem('c', quantidade, new Ticker(ticker), precoMedioCompra, null);
+				ordens.add(ordemCompra);
+				ordens.add(ordemVenda);
+			} catch(Exception e) {
+				System.err.println("Erro em DayTradeService.getOrdensDayTradeByTicker, com a seguinte mensagem: " + e.getMessage());
+			}
+		}
 		return ordens;
 	}
 	

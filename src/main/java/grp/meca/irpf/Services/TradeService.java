@@ -49,7 +49,7 @@ public abstract class TradeService {
 	}
 
 	/*
-	 * Uma nota consolidada, variável encontrada dentro da função, é uma nota onde todas as negociações 
+	 * Uma nota consolidada, variável encontrada dentro da função, é uma onde todas as negociações 
 	 * do mesmo tipo de um ticker são agrupadas em um único item do Map.
 	 * Por exemplo: se houver 3 ordens de compra de xpto, então será consolidada uma única 
 	 * ordem de compra de xpto com o preço médio ponderado e a quantidade igual à soma da quantidade 

@@ -35,6 +35,24 @@ th,td {
 				</tr>
 				</c:forEach>
 			</table>
+		<p>Os dados da tabela 2 são para lançar na parte de "day trade".</p>
+		<table class="table table-bordered">
+			<caption style="caption-side:bottom; text-align:center">Tabela 2</caption>
+			<tr>
+				<th>Ano</th>
+				<th>Mês</th>
+				<th>Lucro</th>
+			</tr>
+			<c:forEach items="${lucroDayTrade}" var="ano">
+				<c:forEach items="${ano.value}" var="mesLucro">
+					<tr>
+						<td><c:out value="${ano.key}"></c:out></td>
+						<td><c:out value="${mesLucro.key}"></c:out></td>
+						<td><c:out value="${mesLucro.value}"></c:out></td>
+					</tr>
+				</c:forEach>
+			</c:forEach>
+		</table>
 		</div>
 	</div>
 </div>

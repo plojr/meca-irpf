@@ -85,12 +85,12 @@ public class Ordem {
 	public Ordem() {}
 	
 	public Ordem(char tipo, int quantidade, Ticker ticker, double preco, NotaDeCorretagem notaDeCorretagem) throws Exception {
-		if(tipo != 'c' && tipo != 'v') throw new Exception("Tipo de ordem inválida: " + tipo);
+		if(tipo != 'c' && tipo != 'v') throw new Exception("Tipo de ordem inválido: " + tipo);
 		this.tipo = tipo;
-		if(quantidade <= 0) throw new Exception("Quantidade inválida: " + quantidade);
+		if(quantidade <= 0) throw new Exception("Quantidade de ordem inválida: " + quantidade);
 		this.quantidade = quantidade;
 		this.ticker = ticker;
-		if(preco <= 0) throw new Exception("Preço inválido: " + preco);
+		if(preco <= 0) throw new Exception("Preço de ordem inválido: " + preco);
 		this.preco = preco;
 		this.notaDeCorretagem = notaDeCorretagem;
 	}
