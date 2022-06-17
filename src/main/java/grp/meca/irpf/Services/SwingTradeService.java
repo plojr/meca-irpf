@@ -16,9 +16,9 @@ import grp.meca.irpf.Models.Ticker;
 public class SwingTradeService extends TradeService {
 
 	@Override
-	public double getImposto() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens) {
+		//Map<Integer, Map<Integer, Double>> impostoMesAno = new HashMap<>();
+		//Map<Integer, Map<Integer, Double>> lucroMesAno = new HashMap<>();
 	}
 
 	public double getTaxaIR() {

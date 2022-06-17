@@ -1,5 +1,7 @@
 package grp.meca.irpf.Services;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,9 +15,11 @@ import lombok.Data;
 public abstract class TradeService {
 	
 	/*
-	 * Esta variável será do tipo "janeiro" => 1000.0, "fevereiro" => -400.0 etc.
+	 * Esta variável será do tipo 2022 => [1 => 1000.0, 2 => -400.0], 
+	 * 							  2021 => [1 => 100, 2 => 400 ] etc.
 	 */
-	protected Map<String, Double> lucroMensal;
+	protected Map<Integer, Map<Integer, Double>> lucro;
+	protected Map<Integer, Map<Integer, Double>> imposto;
 	
 	/*
 	 * A Receita te permite abater, dos lucros futuros, o prejuízo acumulado que
@@ -23,12 +27,27 @@ public abstract class TradeService {
 	 */
 	protected double prejuizoAcumulado;
 	
-	// Retornar o imposto a ser pago.
-	public abstract double getImposto();
+	/*
+	 * Irá calcular o imposto a ser pago e os lucros mensais. Irá atualizar o prejuízo acumulado também.
+	 */
+	public abstract void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens);
 	
 	// Retornar a taxa a ser paga de acodo com o Trade.
 	public abstract double getTaxaIR();
-	
+
+	protected void atualizarLucro(Map<Integer, Map<Integer, Double>> lucro, int mes, int ano, double valor) {
+		if(lucro.containsKey(ano)) {
+			if(lucro.get(ano).containsKey(mes))
+				valor += lucro.get(ano).get(mes);
+			lucro.get(ano).put(mes, valor);
+		}
+		else {
+			Map<Integer, Double> lucroMensal = new HashMap<>();
+			lucroMensal.put(mes, valor);
+			lucro.put(ano, lucroMensal);
+		}
+	}
+
 	/*
 	 * Uma nota consolidada, variável encontrada dentro da função, é uma nota onde todas as negociações 
 	 * do mesmo tipo de um ticker são agrupadas em um único item do Map.
