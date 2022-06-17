@@ -61,6 +61,7 @@ public abstract class TradeService {
 			for(Entry<Integer, Pair<Double, Double>> mesLucroImposto: anoLucroImposto.getValue().entrySet()) {
 				int ano = anoLucroImposto.getKey();
 				int mes = mesLucroImposto.getKey();
+				if(mes == 1) prejuizoAcumulado = 0;
 				double lucro = mesLucroImposto.getValue().getFirst();
 				double imposto = 0;
 				if(lucro < 0)
