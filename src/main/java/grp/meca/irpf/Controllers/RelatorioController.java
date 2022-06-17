@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Relatorio;
 import grp.meca.irpf.Models.Ticker;
 import grp.meca.irpf.Pojos.DayTrade;
+import grp.meca.irpf.Pojos.Relatorio;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
 import grp.meca.irpf.Repositories.TickerRepository;

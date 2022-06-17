@@ -1,22 +1,11 @@
 package grp.meca.irpf.Pojos;
 
-import lombok.Data;
-
-@Data
-public class DayTrade {
+public class DayTrade extends Trade {
 	
-	private int mes;
-	private int ano;
-	private double lucro;
-	private double imposto;
 	private static double prejuizoAcumulado;
 	
 	public DayTrade(int mes, int ano, double lucro, double imposto) {
-		super();
-		this.mes = mes;
-		this.ano = ano;
-		this.lucro = lucro;
-		this.imposto = imposto;
+		super(mes, ano, lucro, imposto);
 	}
 
 	public static double getPrejuizoAcumulado() {

@@ -1,9 +1,8 @@
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Pojos;
 
 import java.util.List;
 
-import grp.meca.irpf.Pojos.Carteira;
-import grp.meca.irpf.Pojos.DayTrade;
+import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Services.DayTradeService;
 import lombok.Data;
 
