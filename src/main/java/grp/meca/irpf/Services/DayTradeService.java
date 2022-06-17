@@ -13,24 +13,31 @@ import org.springframework.data.util.Pair;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Pojos.DayTrade;
 
 public class DayTradeService extends TradeService {
 
 	@Override
 	public void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens) {
-		this.lucro = new HashMap<>();
-		this.imposto = new HashMap<>();
+		this.lucroImposto = new HashMap<>();
+		/*
+		 * Para cada corretagem, serão separadas as ordens swing trade das day trade.
+		 * Com as ordens day trade, será calculado o lucro/prejuízo para cada ticker,
+		 * guardando este valor em um Map<String, Double>. A String é para o ticker, e
+		 * o Double é para o lucro/prejuízo.
+		 * Este valor (o lucro/prejuízo) será colocado em um Map que representará
+		 * o mês e ano, com o lucro/prejuízo e também o imposto a ser pago.
+		 */
 		for(NotaDeCorretagem corretagem: corretagens) {
-			//double taxas = corretagem.getTaxas(), valorBrutoDaCorretagem = corretagem.getValorBruto();
 			List<Ordem> ordensDayTrade = getOrdensDayTrade(corretagem);
 			/*
-			 * Este Map<String, Double> é para auxiliar na hora de percorrer cada lista de ordem.
-			 * Ele vai guardar algo do tipo: Map["xpto3"] = 10;
+			 * Este Map<String, Double> é para auxiliar na hora de percorrer cada lista de ordem,
+			 * calculando o lucro ou o prejuízo daquele ticker.
+			 * Ele vai guardar algo do tipo: Map["xpto3"] = 1000.0;
 			 */
 			Map<String, Double> lucroDiario = new HashMap<>();
 			for(Ordem ordem: ordensDayTrade) {
 				double valor = 0, valorDaOrdem = ordem.getPreco()*ordem.getQuantidade();
-				//double taxaDaOrdem = taxas*valorDaOrdem/Math.abs(valorBrutoDaCorretagem);
 				double taxaDaOrdem = corretagem.getTaxaDaOrdem(valorDaOrdem);
 				if(lucroDiario.containsKey(ordem.getTicker().getCodigo()))
 					valor = lucroDiario.get(ordem.getTicker().getCodigo());
@@ -42,8 +49,9 @@ public class DayTradeService extends TradeService {
 			}
 			int mes = corretagem.getDate().getMonthValue(), ano = corretagem.getDate().getYear();
 			for(Entry<String, Double> entry: lucroDiario.entrySet())
-				atualizarLucro(this.lucro, mes, ano, entry.getValue());
+				atualizarLucro(this.lucroImposto, mes, ano, entry.getValue());
 		}
+		this.prejuizoAcumulado = atualizarImposto(this.lucroImposto);
 	}
 
 	public double getTaxaIR() {
@@ -89,6 +97,21 @@ public class DayTradeService extends TradeService {
 			}
 		}
 		return ordens;
+	}
+
+	public List<DayTrade> getDayTradeList() {
+		List<DayTrade> dayTradeList = new ArrayList<>();
+		for(Entry<Integer, Map<Integer, Pair<Double, Double>>> anoLucroImposto: this.lucroImposto.entrySet()) {
+			for(Entry<Integer, Pair<Double, Double>> mesLucroImposto: anoLucroImposto.getValue().entrySet()) {
+				int ano = anoLucroImposto.getKey();
+				int mes = mesLucroImposto.getKey();
+				double lucro = mesLucroImposto.getValue().getFirst();
+				double imposto = mesLucroImposto.getValue().getSecond();
+				dayTradeList.add(new DayTrade(mes, ano, lucro, imposto));
+			}
+		}
+		DayTrade.setPrejuizoAcumulado(this.prejuizoAcumulado);
+		return dayTradeList;
 	}
 	
 }

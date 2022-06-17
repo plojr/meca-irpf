@@ -41,18 +41,19 @@ th,td {
 			<tr>
 				<th>Ano</th>
 				<th>Mês</th>
-				<th>Lucro</th>
+				<th>Lucro/Prejuízo</th>
+				<th>Imposto a ser pago</th>
 			</tr>
-			<c:forEach items="${lucroDayTrade}" var="ano">
-				<c:forEach items="${ano.value}" var="mesLucro">
-					<tr>
-						<td><c:out value="${ano.key}"></c:out></td>
-						<td><c:out value="${mesLucro.key}"></c:out></td>
-						<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${mesLucro.value}" /></td>
-					</tr>
-				</c:forEach>
+			<c:forEach items="${dayTrade}" var="dt">
+				<tr>
+					<td><c:out value="${dt.ano}"></c:out></td>
+					<td><c:out value="${dt.mes}"></c:out></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dt.lucro}" /></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dt.imposto}" /></td>
+				</tr>
 			</c:forEach>
 		</table>
+		<div>Prejuízo acumulado até o momento: R$ <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prejuizoAcumulado}" />.</div>
 		</div>
 	</div>
 </div>
