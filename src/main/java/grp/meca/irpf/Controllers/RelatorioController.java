@@ -25,7 +25,10 @@ public class RelatorioController {
 	
 	@Autowired
 	private TickerRepository tickerRepository;
-	
+	/*
+	 * A ideia deste método é criar um objeto do tipo Relatorio. O construtor dele
+	 * vai fazer todos os cálculos necessários para mostrar na página de relatório.
+	 */
 	@GetMapping("/dados_declaracao")
 	public String mostrarDadosDeclaracao(Model model) {
 		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
@@ -40,6 +43,8 @@ public class RelatorioController {
 			return "erro";
 		}
 		model.addAttribute("carteira", relatorio.getCarteira().getItensCarteira(Ticker.getMapCodigoCnpj(tickerRepository.findAll())));
+		model.addAttribute("impostoDayTrade", relatorio.getImpostoDayTrade());
+		model.addAttribute("lucroDayTrade", relatorio.getLucroDayTrade());
 		return "relatorio";
 	}
 }

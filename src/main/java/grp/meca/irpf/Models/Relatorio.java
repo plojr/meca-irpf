@@ -4,32 +4,23 @@ import java.util.List;
 import java.util.Map;
 
 import grp.meca.irpf.Pojos.Carteira;
+import grp.meca.irpf.Services.DayTradeService;
 import lombok.Data;
 
 @Data
 public class Relatorio {
 
 	private Carteira carteira;
-	// Estes Map<String, Double> são mapeamentos de mês -> lucro/prejuízo.
-	private Map<String, Double> swingTradeIsento;
-	private Map<String, Double> swingTradeTributavel;
-	private Map<String, Double> mensalDayTrade;
-	private double prejuizoAcumuladoSwingTrade;
-	private double prejuizoAcumuladoDayTrade;
+	private Map<Integer, Map<Integer, Double>> lucroDayTrade;
+	private Map<Integer, Map<Integer, Double>> impostoDayTrade;
 	
-	// TODO
 	public Relatorio(List<NotaDeCorretagem> corretagens) throws Exception {
 		this.carteira = new Carteira();
 		this.carteira.setCarteira(corretagens);
+		DayTradeService dayTradeSrv = new DayTradeService();
+		dayTradeSrv.calculaDadosDoTrade(corretagens);
+		lucroDayTrade = dayTradeSrv.getLucro();
+		impostoDayTrade = dayTradeSrv.getImposto();
 	}
-	
-	// TODO
-	public double getSomaLucroSwingTradeIsento() {
-		double lucro = 0;
-		
-		return lucro;
-	}
-	
-	
 	
 }
