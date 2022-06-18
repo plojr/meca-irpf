@@ -14,7 +14,7 @@ th,td {
 		<jsp:include page="sidebar.jsp" />
 		<div class="col py-3">
 		<h3>Disclaimer</h3>
-		<p>O local onde os dados serão lançados podem sofrer modificações. Estes menus, opções, grupos etc têm como referência o ano de 2022.
+		<p>O local onde os dados serão lançados podem sofrer modificações. Estes menus, opções, grupos etc têm, como referência, o ano de 2022.
 		Portanto, é necessário sempre verificar se o local continua o mesmo.</p>
 		<h3>Instruções</h3>
 		<p>Os dados da tabela 1 serão lançados em "Bens e Direitos". 
