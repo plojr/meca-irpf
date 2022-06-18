@@ -18,6 +18,11 @@ import grp.meca.irpf.Pojos.DadoDayTrade;
 public class DayTradeService extends TradeService {
 
 	@Override
+	public TipoTrade getTipoTrade() {
+		return TipoTrade.DAYTRADE;
+	}
+	
+	@Override
 	public void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens) {
 		this.lucroImposto = new HashMap<>();
 		/*

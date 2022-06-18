@@ -16,6 +16,11 @@ import grp.meca.irpf.Models.Ticker;
 public class SwingTradeService extends TradeService {
 
 	@Override
+	public TipoTrade getTipoTrade() {
+		return TipoTrade.SWINGTRADE;
+	}
+	
+	@Override
 	public void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens) {
 		//Map<Integer, Map<Integer, Double>> impostoMesAno = new HashMap<>();
 		//Map<Integer, Map<Integer, Double>> lucroMesAno = new HashMap<>();

@@ -14,7 +14,10 @@ import lombok.Data;
 
 @Data
 public abstract class TradeService {
-	
+	protected enum TipoTrade {
+		DAYTRADE,
+		SWINGTRADE
+	}
 	/*
 	 * Esta variável será do tipo 2022 => [1 => (1000.0, 150), 2 => (-400.0, 0)], 
 	 * 							  2021 => [1 => (100, 0), 2 => (400,0) ] etc.
@@ -34,6 +37,8 @@ public abstract class TradeService {
 	 * Irá calcular o imposto a ser pago e os lucros mensais. Irá atualizar o prejuízo acumulado também.
 	 */
 	public abstract void calculaDadosDoTrade(List<NotaDeCorretagem> corretagens);
+	
+	public abstract TipoTrade getTipoTrade();
 	
 	// Retornar a taxa a ser paga de acodo com o Trade.
 	public abstract double getTaxaIR();
@@ -61,7 +66,7 @@ public abstract class TradeService {
 			for(Entry<Integer, Pair<Double, Double>> mesLucroImposto: anoLucroImposto.getValue().entrySet()) {
 				int ano = anoLucroImposto.getKey();
 				int mes = mesLucroImposto.getKey();
-				if(mes == 1) prejuizoAcumulado = 0;
+				if(getTipoTrade() == TipoTrade.DAYTRADE && mes == 1) prejuizoAcumulado = 0;
 				double lucro = mesLucroImposto.getValue().getFirst();
 				double imposto = 0;
 				if(lucro < 0)
