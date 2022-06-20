@@ -1,29 +1,17 @@
 package grp.meca.irpf.Pojos;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper=false)
+@Data
 public class DadoSwingTrade extends DadoTrade {
 
 	private double venda;
 	
-	private static double prejuizoAcumulado;
-	
-	public DadoSwingTrade(int mes, int ano, double lucro, double imposto, double venda) {
-		super(mes, ano, lucro, imposto);
+	public DadoSwingTrade(int mes, int ano, double lucro, double imposto, double prejuizoAcumulado, double venda) {
+		super(mes, ano, lucro, imposto, prejuizoAcumulado);
 		this.venda = venda;
 	}
 
-	public static double getPrejuizoAcumulado() {
-		return prejuizoAcumulado;
-	}
-	
-	public static void setPrejuizoAcumulado(double prejuizoAcumulado) {
-		DadoSwingTrade.prejuizoAcumulado = prejuizoAcumulado;
-	}
-	
-	public double getVenda() {
-		return venda;
-	}
-	
-	public void setVenda(double venda) {
-		this.venda = venda;
-	}
 }
