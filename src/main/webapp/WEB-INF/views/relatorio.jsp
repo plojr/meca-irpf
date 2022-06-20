@@ -53,6 +53,7 @@ th,td {
 				<th>Mês</th>
 				<th>Lucro/Prejuízo</th>
 				<th>Imposto a ser pago</th>
+				<th>Prejuízo acumulado</th>
 			</tr>
 			<c:forEach items="${dayTrade}" var="dt">
 				<tr>
@@ -60,10 +61,41 @@ th,td {
 					<td><c:out value="${dt.mes}"></c:out></td>
 					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dt.lucro}" /></td>
 					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dt.imposto}" /></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dt.prejuizoAcumulado}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<div>Prejuízo acumulado até o momento: R$ <fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${prejuizoAcumulado}" />.</div>
+		<p>Tabela 3</p>
+		<table class="table table-bordered">
+			<caption style="caption-side:bottom; text-align:center">Tabela 3</caption>
+			<tr>
+				<th>Ano</th>
+				<th>Mês</th>
+				<th>Lucro/Prejuízo</th>
+				<th>Imposto a ser pago</th>
+				<th>Prejuízo acumulado</th>
+				<th>Venda mensal</th>
+			</tr>
+			<c:forEach items="${swingTrade}" var="st">
+				<tr>
+					<td><c:out value="${st.ano}"></c:out></td>
+					<td><c:out value="${st.mes}"></c:out></td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${st.lucro}" />
+					</td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${st.imposto}" />
+					</td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${st.prejuizoAcumulado}" />
+					</td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${st.venda}" />
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 		<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
 		</div>
 	</div>
