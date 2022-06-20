@@ -93,10 +93,9 @@ public class DayTradeService extends TradeService {
 			int ano = anoMap.getKey();
 			for(Entry<Integer, Double> mesMap: anoMap.getValue().entrySet()) {
 				int mes = mesMap.getKey();
-				if(getTipoTrade() == TipoTrade.DAYTRADE && mes == 1) prejuizoAcumulado = 0;
 				double lucro = anoMesLucro.get(ano).get(mes), imposto = 0;
 				if(lucro < 0)
-					prejuizoAcumulado += lucro;
+					prejuizoAcumulado += Math.abs(lucro);
 				else {
 					if(lucro > prejuizoAcumulado) {
 						imposto = getTaxaIR()*(lucro - prejuizoAcumulado);
