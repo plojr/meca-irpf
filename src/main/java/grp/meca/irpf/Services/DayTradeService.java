@@ -72,20 +72,7 @@ public class DayTradeService extends TradeService {
 			 * o lançamento dos dados no software da Receita Federal.
 			 */
 			int mes = corretagem.getDate().getMonthValue(), ano = corretagem.getDate().getYear();
-			if(this.anoMesLucro.containsKey(ano)) {
-				if(this.anoMesLucro.get(ano).containsKey(mes)) {
-					double novoLucro = lucroDiario + this.anoMesLucro.get(ano).get(mes);
-					this.anoMesLucro.get(ano).put(mes, novoLucro);
-				}
-				else {
-					this.anoMesLucro.get(ano).put(mes, lucroDiario);
-				}
-			}
-			else {
-				Map<Integer, Double> mesLucro = new HashMap<>();
-				mesLucro.put(mes, lucroDiario);
-				anoMesLucro.put(ano, mesLucro);
-			}
+			MapUtil.add(anoMesLucro, ano, mes, lucroDiario);
 		}
 		// Calcular o imposto e o prejuízo acumulado.
 		double prejuizoAcumulado = 0;

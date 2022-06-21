@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import grp.meca.irpf.Models.NotaDeCorretagem;
+import grp.meca.irpf.Models.Ticker;
 import grp.meca.irpf.Pojos.Relatorio;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
+import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
 public class RelatorioController {
@@ -21,13 +23,19 @@ public class RelatorioController {
 	@Autowired
 	private OrdemRepository ordemRepository;
 	
+	@Autowired
+	private TickerRepository tickerRepositoy;
+	
 	@GetMapping("/dados_declaracao")
 	public String mostrarDadosDeclaracao(Model model) {
 		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
 		for(NotaDeCorretagem nc: corretagens)
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc));
+		List<Ticker> tickers = tickerRepositoy.findAllByOrderByCodigo();
 		Relatorio relatorio = new Relatorio(corretagens);
+		model.addAttribute("carteira", relatorio.getStService().getCarteira(tickers));
 		model.addAttribute("dayTrade", relatorio.getDtService().getDayTradeList());
+		model.addAttribute("swingTrade", relatorio.getStService().getSwingTradeList());
 		return "relatorio";
 	}
 }

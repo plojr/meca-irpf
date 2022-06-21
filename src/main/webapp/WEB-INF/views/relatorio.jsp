@@ -42,10 +42,9 @@ th,td {
 		<p>Os dados da tabela 2 são para lançar na parte de "day trade". No menu lateral, vá em "Renda Variável" -> "Operações comuns/Day trade".</p>
 		<p>Irá aparecer a tela com os meses relativos ao ano calendário. A tabela 2 mostra todos os anos e não somente o ano calendário. Por isso,
 		é necessário pegar somente os dados do ano calendário. Para cada mês na tabela 2, o valor do lucro ou prejuízo deve ser colocado no 
-		mês correspondente no software da Receita Federal. Caso você tenha prejuízo acumulado relativo ao ano anterior, a Receita Federal não 
-		permite que você acumule para o próximo ano. Portanto, o prejuízo acumulado em janeiro é zero.</p>
-		<p>Última observação: o imposto deve ser pago até o último dia útil do mês subsequente. Portanto, lance as notas de corretagem assim 
-		que for possível.</p>
+		mês correspondente no software da Receita Federal.</p>
+		<p>Última observação: o imposto deve ser pago até o último dia útil do mês subsequente. Portanto, tome cuidado para não esquecer de
+		pagar o DARF. Lembrando que o código do DARF, para day trade, é o 6015.</p>
 		<table class="table table-bordered">
 			<caption style="caption-side:bottom; text-align:center">Tabela 2</caption>
 			<tr>
@@ -53,7 +52,7 @@ th,td {
 				<th>Mês</th>
 				<th>Lucro/Prejuízo</th>
 				<th>Imposto a ser pago</th>
-				<th>Prejuízo acumulado</th>
+				<th>Prejuízo acumulado até o mês</th>
 			</tr>
 			<c:forEach items="${dayTrade}" var="dt">
 				<tr>
@@ -73,7 +72,7 @@ th,td {
 				<th>Mês</th>
 				<th>Lucro/Prejuízo</th>
 				<th>Imposto a ser pago</th>
-				<th>Prejuízo acumulado</th>
+				<th>Prejuízo acumulado até o mês</th>
 				<th>Venda mensal</th>
 			</tr>
 			<c:forEach items="${swingTrade}" var="st">
