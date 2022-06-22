@@ -57,12 +57,14 @@ public class SwingTradeService extends TradeService {
 				String codigo = ordem.getTicker().getCodigo();
 				if(ordem.getTipo() == 'c') {
 					if(this.carteira.containsKey(codigo)) {
-						double novoCusto = this.carteira.get(codigo).getSecond() + ordem.getPreco()*ordem.getQuantidade();
+						double taxaDaOrdem = corretagem.getTaxaDaOrdem(ordem);
+						double novoCusto = this.carteira.get(codigo).getSecond() + ordem.getPreco()*ordem.getQuantidade() + taxaDaOrdem;
 						int novaQuantidade = this.carteira.get(codigo).getFirst() + ordem.getQuantidade();
 						this.carteira.put(codigo, Pair.of(novaQuantidade, novoCusto));
 					}
 					else {
-						double novoCusto = ordem.getPreco()*ordem.getQuantidade();
+						double taxaDaOrdem = corretagem.getTaxaDaOrdem(ordem);
+						double novoCusto = ordem.getPreco()*ordem.getQuantidade() + taxaDaOrdem;
 						int novaQuantidade = ordem.getQuantidade();
 						this.carteira.put(codigo, Pair.of(novaQuantidade, novoCusto));
 					}
