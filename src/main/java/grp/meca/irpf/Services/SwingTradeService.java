@@ -70,12 +70,13 @@ public class SwingTradeService extends TradeService {
 					}
 				}
 				else {
+					double taxaDaOrdem = corretagem.getTaxaDaOrdem(ordem);
 					int novaQuantidade = this.carteira.get(codigo).getFirst() - ordem.getQuantidade();
 					double precoMedio = this.carteira.get(codigo).getSecond()/carteira.get(codigo).getFirst();
 					double novoCusto = precoMedio*novaQuantidade;
 					MapUtil.add(anoMesVenda, ano, mes, ordem.getQuantidade()*ordem.getPreco());
 					this.carteira.put(codigo, Pair.of(novaQuantidade, novoCusto));
-					double lucro = ordem.getQuantidade()*(ordem.getPreco() - precoMedio);
+					double lucro = ordem.getQuantidade()*(ordem.getPreco() - precoMedio) - taxaDaOrdem;
 					MapUtil.add(anoMesLucro, ano, mes, lucro);
 				}
 			}
