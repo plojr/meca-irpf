@@ -18,22 +18,8 @@ import grp.meca.irpf.Pojos.ItemCarteira;
 import grp.meca.irpf.Pojos.Relatorio;
 
 @SpringBootTest
-class TestesSimples {
+class Testes01 {
 	private final double EPSILON = 0.00001;
-	/*
-	 *
-Friday	2020-01-03	-3000.90					0.90	
-c	100	itsa4	10	1000	-1000	0.30	-1000.30
-c	100	bbdc3	20	2000	-2000	0.60	-2000.60
-Total				3000	-3000	0.90	
-
-Wednesday	2020-02-05	-17505.25				5.25	
-c	200	petr3	15	3000	-3000	0.90	-3000.90
-c	100	bbdc3	20	2000	-2000	0.60	-2000.60
-c	500	mglu3	25	12500	-12500	3.75	-12503.75
-Total				17500	-17500	5.25	
-
-	 */
 	@Test
 	void testeSwingTrade01() {
 		try {
@@ -61,7 +47,7 @@ Total				17500	-17500	5.25
 				else if(ic.getTicker().equals("bbdc3"))
 					assertEquals(2000.60, ic.getCustoTotal(), EPSILON);
 			}
-			NotaDeCorretagem nc2 = new NotaDeCorretagem(LocalDate.of(2020,  2, 5), -17505.25);
+			NotaDeCorretagem nc2 = new NotaDeCorretagem(LocalDate.of(2020, 2, 5), -17505.25);
 			Ticker ticker3 = new Ticker("petr3"), ticker4 = new Ticker("mglu3");
 			tickers.add(ticker3);
 			tickers.add(ticker4);
