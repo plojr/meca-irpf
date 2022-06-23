@@ -95,6 +95,29 @@ th,td {
 			</c:forEach>
 		</table>
 		
+		<p>Tabela 4</p>
+		<table class="table table-bordered">
+			<caption style="caption-side:bottom; text-align:center">Tabela 4</caption>
+			<tr>
+				<th>Ano</th>
+				<th>Mês</th>
+				<th>Lucro</th>
+				<th>Venda mensal</th>
+			</tr>
+			<c:forEach items="${swingTradeNaoTributavel}" var="stnt">
+				<tr>
+					<td><c:out value="${stnt.ano}"></c:out></td>
+					<td><c:out value="${stnt.mes}"></c:out></td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${stnt.lucro}" />
+					</td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${stnt.venda}" />
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 		<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
 		</div>
 	</div>

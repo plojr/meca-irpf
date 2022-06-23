@@ -196,11 +196,41 @@ public class SwingTradeService extends TradeService {
 			int ano = anoMap.getKey();
 			for(Entry<Integer, Double> mesMap: anoMap.getValue().entrySet()) {
 				int mes = mesMap.getKey();
-				double lucro = anoMesLucro.get(ano).get(mes);
-				double prejuizoAcumulado = anoMesPrejuizoAcumulado.get(ano).get(mes);
 				double venda = anoMesVenda.get(ano).get(mes);
+				double lucro = anoMesLucro.get(ano).get(mes);
+				if(venda <= LIMITE_PARA_IR && lucro > 0) continue;
+				double prejuizoAcumulado = anoMesPrejuizoAcumulado.get(ano).get(mes);
 				double imposto = anoMesImposto.get(ano).get(mes);
 				dadoSwingTradeList.add(new DadoSwingTrade(mes, ano, lucro, imposto, prejuizoAcumulado, venda));
+			}
+		}
+		return dadoSwingTradeList;
+	}
+	
+	/*
+	 * Esta função retornará uma lista com uma lista de DadoSwingTrade
+	 * com o critério para ser isento de imposto em swing trade, isto é,
+	 * tendo vendas <= R$ 20000.00. O imposto não será retornado já que
+	 * esta lista conterá somente meses onde o investidor ficou isento de IR.
+	 * Além disso, o prejuízo acumulado não será mostrado já que a função
+	 * getSwingTradeList() já faz esse cálculo e existe uma tabela na página
+	 * de relatório para ele.
+	 * Nos meses onde teve prejuízo, não será mostrado, já que
+	 * isso terá reflexo no prejuízo acumulado.
+	 * Essa função será útil, pois o investidor precisa declarar quanto teve
+	 * de lucro isento, mesmo que ele não precise pagar IR.
+	 */
+	public List<DadoSwingTrade> getSwingTradeListNaoTributavel() {
+		List<DadoSwingTrade> dadoSwingTradeList = new ArrayList<>();
+		for(Entry<Integer, Map<Integer, Double>> anoMap: anoMesLucro.entrySet()) {
+			int ano = anoMap.getKey();
+			for(Entry<Integer, Double> mesMap: anoMap.getValue().entrySet()) {
+				int mes = mesMap.getKey();
+				double venda = anoMesVenda.get(ano).get(mes);
+				if(venda > LIMITE_PARA_IR) continue;
+				double lucro = anoMesLucro.get(ano).get(mes);
+				if(lucro <= 0) continue;
+				dadoSwingTradeList.add(new DadoSwingTrade(mes, ano, lucro, 0, 0, venda));
 			}
 		}
 		return dadoSwingTradeList;
