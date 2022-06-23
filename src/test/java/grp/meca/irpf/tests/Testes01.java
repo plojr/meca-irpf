@@ -19,7 +19,7 @@ import grp.meca.irpf.Pojos.Relatorio;
 
 @SpringBootTest
 class Testes01 {
-	private final double EPSILON = 0.00001;
+	private final double EPSILON = 0.01;
 	@Test
 	void testeSwingTrade01() {
 		try {
