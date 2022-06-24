@@ -37,6 +37,7 @@ public class RelatorioController {
 		model.addAttribute("dayTrade", relatorio.getDtService().getDayTradeList());
 		model.addAttribute("swingTrade", relatorio.getStService().getSwingTradeList());
 		model.addAttribute("swingTradeNaoTributavel", relatorio.getStService().getSwingTradeListNaoTributavel());
+		model.addAttribute("lucroNaoTributavel", relatorio.getStService().getLucroNaoTributavelPorAno());
 		return "relatorio";
 	}
 }

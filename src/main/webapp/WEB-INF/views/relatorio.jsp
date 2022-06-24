@@ -118,6 +118,23 @@ th,td {
 			</c:forEach>
 		</table>
 		
+		<p>Tabela 5</p>
+		<table class="table table-bordered">
+			<caption style="caption-side:bottom; text-align:center">Tabela 5</caption>
+			<tr>
+				<th>Ano</th>
+				<th>Lucro</th>
+			</tr>
+			<c:forEach items="${lucroNaoTributavel}" var="lnt">
+				<tr>
+					<td><c:out value="${lnt.key}"></c:out></td>
+					<td>
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${lnt.value}" />
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 		<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
 		</div>
 	</div>

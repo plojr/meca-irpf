@@ -236,6 +236,29 @@ public class SwingTradeService extends TradeService {
 		return dadoSwingTradeList;
 	}
 	
+	/*
+	 * Esta função retornará o somatório do lucro em cada ano.
+	 * O somatório será somente dos meses em que houve lucro,
+	 * e também, cujas vendas foram menores do que o limite para o IR.
+	 */
+	public Map<Integer, Double> getLucroNaoTributavelPorAno() {
+		Map<Integer, Double> lucroNaoTributavel = new HashMap<>();
+		for(Entry<Integer, Map<Integer, Double>> anoMap: anoMesLucro.entrySet()) {
+			int ano = anoMap.getKey();
+			double lucroAnual = 0;
+			for(Entry<Integer, Double> mesMap: anoMap.getValue().entrySet()) {
+				int mes = mesMap.getKey();
+				double venda = anoMesVenda.get(ano).get(mes);
+				if(venda > LIMITE_PARA_IR) continue;
+				double lucro = anoMesLucro.get(ano).get(mes);
+				if(lucro <= 0) continue;
+				lucroAnual += lucro;
+			}
+			lucroNaoTributavel.put(ano, lucroAnual);
+		}
+		return lucroNaoTributavel;
+	}
+	
 	public List<ItemCarteira> getCarteira(List<Ticker> tickers) {
 		List<ItemCarteira> itensCarteira = new ArrayList<>();
 		for(Ticker ticker: tickers)
