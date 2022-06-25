@@ -22,7 +22,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = "notas_de_corretagem")
-public class NotaDeCorretagem {
+public class NotaDeCorretagem implements Comparable<NotaDeCorretagem> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,5 +75,10 @@ public class NotaDeCorretagem {
 			valorAbsolutoDaCorretagem += ordem.getPreco()*ordem.getQuantidade();
 		return getTaxas()*valorDeOrdem/valorAbsolutoDaCorretagem;
 	}
-	
+
+	@Override
+	public int compareTo(NotaDeCorretagem nc) {
+		return this.getDate().compareTo(nc.getDate());
+	}
+
 }
