@@ -35,5 +35,5 @@ public abstract class EventoExtraordinario {
 	private Ticker ticker1;
 	
 	@Column(nullable = false)
-	private LocalDate dataCisao;
+	private LocalDate dataEvento;
 }
