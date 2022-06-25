@@ -18,7 +18,7 @@ import grp.meca.irpf.Pojos.ItemCarteira;
 import grp.meca.irpf.Pojos.Relatorio;
 
 @SpringBootTest
-class Testes01 {
+class TestesSimples01 {
 	private final double EPSILON = 0.01;
 	@Test
 	void testeSwingTrade01() {
@@ -45,7 +45,7 @@ class Testes01 {
 			assertEquals(nc1.getTaxas(), 0.9, EPSILON);
 			List<NotaDeCorretagem> corretagens = new ArrayList<>();
 			corretagens.add(nc1);
-			Relatorio relatorio = new Relatorio(corretagens);
+			Relatorio relatorio = new Relatorio(corretagens, null);
 			List<ItemCarteira> itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(2, itensCarteira.size());
 			assertThat(itensCarteira.size() > 0);
@@ -79,7 +79,7 @@ class Testes01 {
 			nc2.setOrdens(ordens2);
 			assertEquals(nc2.getTaxas(), 5.25, EPSILON);
 			corretagens.add(nc2);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(4, itensCarteira.size());
 			for(ItemCarteira ic: itensCarteira) {
@@ -121,7 +121,7 @@ class Testes01 {
 			assertEquals(0.9, nc1.getTaxas(), EPSILON);
 			List<NotaDeCorretagem> corretagens = new ArrayList<>();
 			corretagens.add(nc1);
-			Relatorio relatorio = new Relatorio(corretagens);
+			Relatorio relatorio = new Relatorio(corretagens, null);
 			List<DadoDayTrade> dtList = relatorio.getDtService().getDayTradeList();
 			assertThat(dtList.size() > 0);
 			for(DadoDayTrade ddt: dtList) {

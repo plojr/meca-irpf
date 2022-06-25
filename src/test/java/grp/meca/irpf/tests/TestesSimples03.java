@@ -13,15 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
-import grp.meca.irpf.Pojos.DadoDayTrade;
 import grp.meca.irpf.Pojos.ItemCarteira;
 import grp.meca.irpf.Pojos.Relatorio;
 
 @SpringBootTest
-class Testes02 {
+class TestesSimples03 {
 	private final double EPSILON = 0.01;
 	@Test
-	void testeSwingTrade02() {
+	void testeSwingTrade03() {
 		try {
 			/*
 			 * c = compra
@@ -45,7 +44,7 @@ class Testes02 {
 			assertEquals(nc1.getTaxas(), 0.9, EPSILON);
 			List<NotaDeCorretagem> corretagens = new ArrayList<>();
 			corretagens.add(nc1);
-			Relatorio relatorio = new Relatorio(corretagens);
+			Relatorio relatorio = new Relatorio(corretagens, null);
 			List<ItemCarteira> itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(2, itensCarteira.size());
 			assertThat(itensCarteira.size() > 0);
@@ -79,7 +78,7 @@ class Testes02 {
 			nc2.setOrdens(ordens2);
 			assertEquals(5.25, nc2.getTaxas(), EPSILON);
 			corretagens.add(nc2);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(4, itensCarteira.size());
 			for(ItemCarteira ic: itensCarteira) {
@@ -113,7 +112,7 @@ class Testes02 {
 			nc3.setOrdens(ordens3);
 			assertEquals(4.5, nc3.getTaxas(), EPSILON);
 			corretagens.add(nc3);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(4, itensCarteira.size());
 			for(ItemCarteira ic: itensCarteira) {
@@ -141,7 +140,7 @@ class Testes02 {
 			nc4.setOrdens(ordens4);
 			assertEquals(0.15, nc4.getTaxas(), EPSILON);
 			corretagens.add(nc4);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(4, itensCarteira.size());
 			for(ItemCarteira ic: itensCarteira) {
@@ -179,7 +178,7 @@ class Testes02 {
 			nc5.setOrdens(ordens5);
 			assertEquals(11.25, nc5.getTaxas(), EPSILON);
 			corretagens.add(nc5);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(1, itensCarteira.size());
 			for(ItemCarteira ic: itensCarteira) {
@@ -199,7 +198,7 @@ class Testes02 {
 			/*
 			 * c = compra
 			 * v = venda
-			 * Nota de corretagem 5 (com suas respectivas ordens):
+			 * Nota de corretagem 6 (com suas respectivas ordens):
 			 * Tuesday 2021-05-04 1999.40
 			 * v 300 petr3 10
 			 * 
@@ -211,109 +210,57 @@ class Testes02 {
 			nc6.setOrdens(ordens6);
 			assertEquals(0.6, nc6.getTaxas(), EPSILON);
 			corretagens.add(nc6);
-			relatorio = new Relatorio(corretagens);
+			relatorio = new Relatorio(corretagens, null);
 			itensCarteira = relatorio.getStService().getCarteira(tickers);
 			assertEquals(0, itensCarteira.size());
 			assertEquals(1001.50, relatorio.getStService().getAnoMesPrejuizoAcumulado().get(2021).get(5), EPSILON);
 			assertEquals(0, relatorio.getStService().getAnoMesImposto().get(2021).get(5), EPSILON);
 			assertEquals(-1001.50, relatorio.getStService().getAnoMesLucro().get(2021).get(5), EPSILON);
 			assertEquals(2000, relatorio.getStService().getAnoMesVenda().get(2021).get(5), EPSILON);
+			/*
+			 * c = compra
+			 * v = venda
+			 * Nota de corretagem 7 (com suas respectivas ordens):
+			 * Tuesday 2021-05-05 -200060.01
+			 * c 10000 itsa4 20
+			 * 
+			 */
+			NotaDeCorretagem nc7 = new NotaDeCorretagem(LocalDate.of(2021, 5, 5), -200060.01);
+			Ordem ordem14 = new Ordem('c', 10000, tickerITSA4, 20, nc7);
+			List<Ordem> ordens7 = new ArrayList<>();
+			ordens7.add(ordem14);
+			nc7.setOrdens(ordens7);
+			assertEquals(60.01, nc7.getTaxas(), EPSILON);
+			corretagens.add(nc7);
+			relatorio = new Relatorio(corretagens, null);
+			itensCarteira = relatorio.getStService().getCarteira(tickers);
+			assertEquals(1, itensCarteira.size());
+			assertEquals(200060.01, itensCarteira.get(0).getCustoTotal(), EPSILON);
+			/*
+			 * c = compra
+			 * v = venda
+			 * Nota de corretagem 8 (com suas respectivas ordens):
+			 * Tuesday 2021-06-04 299909.99
+			 * v 10000 itsa4 30
+			 * 
+			 */
+			NotaDeCorretagem nc8 = new NotaDeCorretagem(LocalDate.of(2021, 6, 4), 299909.99);
+			Ordem ordem15 = new Ordem('v', 10000, tickerITSA4, 30, nc8);
+			List<Ordem> ordens8 = new ArrayList<>();
+			ordens8.add(ordem15);
+			nc8.setOrdens(ordens8);
+			assertEquals(90.01, nc8.getTaxas(), EPSILON);
+			corretagens.add(nc8);
+			relatorio = new Relatorio(corretagens, null);
+			itensCarteira = relatorio.getStService().getCarteira(tickers);
+			assertEquals(0, itensCarteira.size());
+			assertEquals(0, relatorio.getStService().getAnoMesPrejuizoAcumulado().get(2021).get(6), EPSILON);
+			assertEquals(14827.272, relatorio.getStService().getAnoMesImposto().get(2021).get(6), EPSILON);
+			assertEquals(99849.985, relatorio.getStService().getAnoMesLucro().get(2021).get(6), EPSILON);
+			assertEquals(300000, relatorio.getStService().getAnoMesVenda().get(2021).get(6), EPSILON);
 		} catch(Exception e) {
 			//System.err.println("Erro em testeSwingTrade02(): " + e.getMessage());
 			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	void testeDayTrade02() {
-		try {
-			/*
-			 * c = compra
-			 * v = venda
-			 * Nota de corretagem 1 (com suas respectivas ordens):
-			 * c 100 itsa4 10
-			 * v 100 itsa4 20
-			 * 
-			 */
-			NotaDeCorretagem nc1 = new NotaDeCorretagem(LocalDate.of(2020, 1, 3), 999.10);
-			Ticker ticker1 = new Ticker("itsa4");
-			List<Ticker> tickers = new ArrayList<>();
-			tickers.add(ticker1);
-			Ordem ordem1 = new Ordem('c', 100, ticker1, 10, nc1), 
-				  ordem2 = new Ordem('v', 100, ticker1, 20, nc1);
-			List<Ordem> ordens1 = new ArrayList<>();
-			ordens1.add(ordem1);
-			ordens1.add(ordem2);
-			nc1.setOrdens(ordens1);
-			assertEquals(0.9, nc1.getTaxas(), EPSILON);
-			List<NotaDeCorretagem> corretagens = new ArrayList<>();
-			corretagens.add(nc1);
-			Relatorio relatorio = new Relatorio(corretagens);
-			List<DadoDayTrade> dtList = relatorio.getDtService().getDayTradeList();
-			assertThat(dtList.size() > 0);
-			for(DadoDayTrade ddt: dtList) {
-				if(ddt.getAno() == 2022 && ddt.getMes() == 1) {
-					assertEquals(999.1, ddt.getLucro(), EPSILON);
-					assertEquals(199.82, ddt.getImposto(), EPSILON);
-					assertEquals(0, ddt.getPrejuizoAcumulado(), EPSILON);
-				}
-			}
-			/*
-			 * c = compra
-			 * v = venda
-			 * Nota de corretagem 2 (com suas respectivas ordens):
-			 * c 100 itsa4 20
-			 * v 100 itsa4 20
-			 * 
-			 */
-			NotaDeCorretagem nc2 = new NotaDeCorretagem(LocalDate.of(2020, 2, 3), -1.2);
-			Ordem ordem3 = new Ordem('c', 100, ticker1, 20, nc2),
-				  ordem4 = new Ordem('v', 100, ticker1, 20, nc2);
-			List<Ordem> ordens2 = new ArrayList<>();
-			ordens2.add(ordem3);
-			ordens2.add(ordem4);
-			nc2.setOrdens(ordens2);
-			assertEquals(1.2, nc2.getTaxas(), EPSILON);
-			corretagens.add(nc2);
-			relatorio = new Relatorio(corretagens);
-			dtList = relatorio.getDtService().getDayTradeList();
-			assertThat(dtList.size() > 0);
-			for(DadoDayTrade ddt: dtList) {
-				if(ddt.getAno() == 2022 && ddt.getMes() == 2) {
-					assertEquals(-1.2, ddt.getLucro(), EPSILON);
-					assertEquals(0, ddt.getImposto(), EPSILON);
-					assertEquals(-1.2, ddt.getPrejuizoAcumulado(), EPSILON);
-				}
-			}
-			/*
-			 * c = compra
-			 * v = venda
-			 * Nota de corretagem 3 (com suas respectivas ordens):
-			 * c 100 itsa4 30
-			 * v 100 itsa4 20
-			 * 
-			 */
-			NotaDeCorretagem nc3 = new NotaDeCorretagem(LocalDate.of(2020, 3, 3), -1001.5);
-			Ordem ordem5 = new Ordem('c', 100, ticker1, 30, nc3),
-				  ordem6 = new Ordem('v', 100, ticker1, 20, nc3);
-			List<Ordem> ordens3 = new ArrayList<>();
-			ordens3.add(ordem5);
-			ordens3.add(ordem6);
-			nc3.setOrdens(ordens3);
-			assertEquals(1.5, nc3.getTaxas(), EPSILON);
-			corretagens.add(nc3);
-			relatorio = new Relatorio(corretagens);
-			dtList = relatorio.getDtService().getDayTradeList();
-			assertThat(dtList.size() > 0);
-			for(DadoDayTrade ddt: dtList) {
-				if(ddt.getAno() == 2022 && ddt.getMes() == 3) {
-					assertEquals(-1001.5, ddt.getLucro(), EPSILON);
-					assertEquals(0, ddt.getImposto(), EPSILON);
-					assertEquals(-1002.700270027, ddt.getPrejuizoAcumulado(), EPSILON);
-				}
-			}
-		} catch (Exception e) {
-			System.err.println("Erro em testeDayTrade02(): " + e.getMessage());
 		}
 	}
 }
