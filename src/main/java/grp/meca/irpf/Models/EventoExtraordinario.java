@@ -10,6 +10,7 @@
 package grp.meca.irpf.Models;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+
+import org.springframework.data.util.Pair;
 
 import lombok.Data;
 
@@ -36,4 +39,6 @@ public abstract class EventoExtraordinario {
 	
 	@Column(nullable = false)
 	private LocalDate dataEvento;
+	
+	public abstract void aplicarEvento(Map<String, Pair<Integer, Double>> carteira);
 }

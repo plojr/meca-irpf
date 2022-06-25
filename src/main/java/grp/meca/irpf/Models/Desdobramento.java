@@ -5,14 +5,18 @@
  * Um exemplo de desdobramento foi a Copel em 2021.
  * Para cada ação de Copel, qualquer que fosse a classe, que o investidor possuía, 
  * ele passou a possuir 10.
- * Obviamente o preço da ação é dividido por 10.
+ * Obviamente o preço por ação é dividido por 10.
  * No caso da variável "proporção", para o exemplo acima, o valor será 10.
  */
 
 package grp.meca.irpf.Models;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import org.springframework.data.util.Pair;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,4 +28,12 @@ public class Desdobramento extends EventoExtraordinario {
 
 	@Column
 	private double proporcao;
+	
+	public void aplicarEvento(Map<String, Pair<Integer, Double>> carteira) {
+		if(carteira == null) return;
+		String ticker = this.getTicker1().getCodigo();
+		if(!carteira.containsKey(ticker)) return;
+		int novaQuantidade = (int)(carteira.get(ticker).getFirst()*proporcao);
+		carteira.put(ticker, Pair.of(novaQuantidade, carteira.get(ticker).getSecond()));
+	}
 }
