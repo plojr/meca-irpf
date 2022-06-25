@@ -7,6 +7,9 @@
  * por diante.
  * É também importante salvar a data da cisão no banco. No exemplo acima, a data da
  * cisão foi 18/10/2021.
+ * Para deixar claro, na hora de cadastrar, é necessário adicionar a cisão de cada
+ * tipo de ação. Tomando o exemplo anterior, será necessário adicionar uma cisão para
+ * as ações ON, uma para as PN e uma para a UNIT.
  */
 
 package grp.meca.irpf.Models;
