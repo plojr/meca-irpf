@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.EventoExtraordinario;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import lombok.Data;
@@ -28,7 +29,7 @@ public abstract class TradeService {
 	/*
 	 * Irá calcular o imposto a ser pago e os lucros mensais. Irá atualizar o prejuízo acumulado também.
 	 */
-	public abstract void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens);
+	public abstract void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens, List<EventoExtraordinario> eventos);
 	
 	public abstract TipoTrade getTipoTrade();
 	
