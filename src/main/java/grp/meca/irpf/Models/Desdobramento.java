@@ -11,6 +11,7 @@
 
 package grp.meca.irpf.Models;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -25,6 +26,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 public class Desdobramento extends EventoExtraordinario {
+	
+	public Desdobramento(Ticker ticker1, LocalDate dataEvento, double proporcao) {
+		super(ticker1, dataEvento);
+		this.proporcao = proporcao;
+	}
 
 	@Column
 	private double proporcao;
