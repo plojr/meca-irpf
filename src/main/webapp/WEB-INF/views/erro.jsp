@@ -1,14 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Erro!</title>
+<jsp:include page="header.jsp" />
+<title>Home</title>
 </head>
 <body>
-	<p>Ops, algo deu errado.</p>
-	<div>Mensagem: <c:out value="${mensagemDeErro}"></c:out></div>
+<div class="container-fluid">
+	<div class="row flex-nowrap">
+		<jsp:include page="sidebar.jsp" />
+		<div class="col py-3">
+		<p>Ops, algo deu errado.</p>
+		<div>Mensagem: <c:out value="${mensagemDeErro}"></c:out></div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
