@@ -63,9 +63,8 @@ public class CorretagemController {
 					ticker, Double.parseDouble(parametros.get("preco"+i)), nc);
 				ordemRepository.save(ordem);
 			} catch(Exception e) {
-				System.out.println(e.getMessage());
 				model.addAttribute("mensagemDeErro", e.getMessage());
-				return "redirect:/erro";
+				return new ErroController().getErro(model);
 			}
 		}
 		// Pegar a lista de corretagens do banco para para poder mostrar na view.
