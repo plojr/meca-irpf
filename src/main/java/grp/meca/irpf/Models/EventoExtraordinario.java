@@ -27,7 +27,12 @@ import lombok.Data;
 
 @Data
 @MappedSuperclass
-public abstract class EventoExtraordinario {
+public abstract class EventoExtraordinario implements Comparable<EventoExtraordinario> {
+
+	public EventoExtraordinario(Ticker ticker1, LocalDate dataEvento) {
+		this.ticker1 = ticker1;
+		this.dataEvento = dataEvento;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +46,8 @@ public abstract class EventoExtraordinario {
 	private LocalDate dataEvento;
 	
 	public abstract void aplicarEvento(Map<String, Pair<Integer, Double>> carteira);
+	
+	public int compareTo(EventoExtraordinario evento) {
+		return this.getDataEvento().compareTo(evento.getDataEvento());
+	}
 }
