@@ -58,6 +58,10 @@ public class TickerController {
 	
 	@PostMapping("/adicionar_ticker")
 	public String adicionarTickerPost(@ModelAttribute("ticker") Ticker ticker, Model model) {
+		if(tickerRepository.findByCodigo(ticker.getCodigo()) != null) {
+			model.addAttribute("mensagemDeErro", "Ticker " + ticker.getCodigo() + " já existente!");
+			return new ErroController().getErro(model);
+		}
 		if(ticker.getCnpj().equals(""))
 			ticker.setCnpj("00000000000000");
 		tickerRepository.save(ticker);
