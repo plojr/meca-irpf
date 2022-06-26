@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.EventoExtraordinario;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
@@ -35,7 +36,7 @@ public class DayTradeService extends TradeService {
 	}
 	
 	@Override
-	public void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens) {
+	public void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens, List<EventoExtraordinario> eventos) {
 		/*
 		 * Para cada corretagem, serão separadas as ordens swing trade das day trade.
 		 * Com as ordens day trade, será calculado o lucro/prejuízo para cada ticker,

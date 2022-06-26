@@ -1,6 +1,7 @@
 package grp.meca.irpf.Services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.EventoExtraordinario;
 import grp.meca.irpf.Models.NotaDeCorretagem;
 import grp.meca.irpf.Models.Ordem;
 import grp.meca.irpf.Models.Ticker;
@@ -48,8 +50,24 @@ public class SwingTradeService extends TradeService {
 	}
 	
 	@Override
-	public void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens) {
+	public void calcularDadosDoTrade(List<NotaDeCorretagem> corretagens, List<EventoExtraordinario> listaDeEventos) {
+		Collections.sort(listaDeEventos);
+		Collections.sort(corretagens);
+		int indiceProximoEvento = 0;
+		EventoExtraordinario proximoEvento = null;
+		if(listaDeEventos.size() > indiceProximoEvento)
+			proximoEvento = listaDeEventos.get(indiceProximoEvento++);
 		for(NotaDeCorretagem corretagem: corretagens) {
+			// Pode ter vários eventos no mesmo dia. Por isso, o while foi usado ao invés do if.
+			while(proximoEvento != null && !corretagem.getDate().isBefore(proximoEvento.getDataEvento())) {
+				proximoEvento.aplicarEvento(carteira);
+				if(listaDeEventos.size() > indiceProximoEvento)
+					proximoEvento = listaDeEventos.get(indiceProximoEvento++);
+				else {
+					proximoEvento = null;
+					break;
+				}
+			}
 			int mes = corretagem.getDate().getMonthValue();
 			int ano = corretagem.getDate().getYear();
 			List<Ordem> ordens = getOrdensSwingTrade(corretagem);
@@ -80,6 +98,12 @@ public class SwingTradeService extends TradeService {
 					MapUtil.add(anoMesLucro, ano, mes, lucro);
 				}
 			}
+		}
+		while(proximoEvento != null) {
+			proximoEvento.aplicarEvento(carteira);
+			if(listaDeEventos.size() > indiceProximoEvento)
+				proximoEvento = listaDeEventos.get(indiceProximoEvento++);
+			else break;
 		}
 		// Calcular o imposto e o prejuízo acumulado.
 		double prejuizoAcumulado = 0;
