@@ -29,6 +29,8 @@ import lombok.Data;
 @MappedSuperclass
 public abstract class EventoExtraordinario implements Comparable<EventoExtraordinario> {
 
+	public EventoExtraordinario() {}
+	
 	public EventoExtraordinario(Ticker ticker1, LocalDate dataEvento) {
 		this.ticker1 = ticker1;
 		this.dataEvento = dataEvento;

@@ -21,18 +21,22 @@ import org.springframework.data.util.Pair;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper=false)
+@ToString(callSuper=true)
 @Data
 @Entity
 public class Desdobramento extends EventoExtraordinario {
+	
+	public Desdobramento() {}
 	
 	public Desdobramento(Ticker ticker1, LocalDate dataEvento, double proporcao) {
 		super(ticker1, dataEvento);
 		this.proporcao = proporcao;
 	}
 
-	@Column
+	@Column(nullable = false)
 	private double proporcao;
 	
 	public void aplicarEvento(Map<String, Pair<Integer, Double>> carteira) {

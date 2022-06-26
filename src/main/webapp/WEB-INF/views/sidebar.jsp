@@ -29,6 +29,10 @@
                         <a href="editar_ticker" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Editar ticker</span></a>
                     </li>
+                    <li>
+                        <a href="adicionar_desdobramento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar desdobramento</span></a>
+                    </li>
                     <!-- li>
                         <a href="teste" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Adicionar valores aleatórios</span> </a>
