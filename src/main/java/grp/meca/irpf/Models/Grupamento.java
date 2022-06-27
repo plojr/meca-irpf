@@ -26,6 +26,8 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Grupamento extends EventoExtraordinario {
 
+	public Grupamento() {}
+	
 	public Grupamento(Ticker ticker1, LocalDate dataEvento, double proporcao) {
 		super(ticker1, dataEvento);
 		this.proporcao = proporcao;
