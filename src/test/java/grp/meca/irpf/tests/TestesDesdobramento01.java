@@ -56,7 +56,7 @@ public class TestesDesdobramento01 {
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("TesteDesdobramento01.teste01(): " + e.getMessage());
+			System.err.println("TesteDesdobramento01.teste01(): " + e.getMessage());
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class TestesDesdobramento01 {
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("TesteDesdobramento01.teste01(): " + e.getMessage());
+			System.err.println("TesteDesdobramento01.teste01(): " + e.getMessage());
 		}
 	}
 }
