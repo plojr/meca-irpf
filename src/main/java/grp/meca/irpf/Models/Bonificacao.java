@@ -68,9 +68,10 @@ public class Bonificacao extends EventoExtraordinario {
 		if(carteira == null) return;
 		String ticker = this.getTicker1().getCodigo();
 		if(!carteira.containsKey(ticker)) return;
-		int novaQuantidade = (int)(carteira.get(ticker).getFirst()/proporcao);
-		double custoBonificacao = novaQuantidade*preco;
+		int quantidadeBonificacao = (int)(carteira.get(ticker).getFirst()*proporcao);
+		double custoBonificacao = quantidadeBonificacao*preco;
 		double novoCustoTotal = carteira.get(ticker).getSecond() + custoBonificacao;
+		int novaQuantidade = carteira.get(ticker).getFirst() + quantidadeBonificacao;
 		carteira.put(ticker, Pair.of(novaQuantidade, novoCustoTotal));
 	}
 }
