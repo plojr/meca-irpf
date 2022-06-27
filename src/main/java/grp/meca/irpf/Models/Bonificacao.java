@@ -26,6 +26,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 public class Bonificacao extends EventoExtraordinario {
+	
+	public Bonificacao() {}
 
 	public Bonificacao(Ticker ticker1, LocalDate dataEvento, double proporcao, double preco) {
 		super(ticker1, dataEvento);
