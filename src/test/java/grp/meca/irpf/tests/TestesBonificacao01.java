@@ -18,7 +18,7 @@ import grp.meca.irpf.Pojos.ItemCarteira;
 import grp.meca.irpf.Pojos.Relatorio;
 
 @SpringBootTest
-public class TestesBonificacao {
+public class TestesBonificacao01 {
 	
 	private final double EPSILON = 0.01;
 	@Test
