@@ -33,6 +33,18 @@
                         <a href="adicionar_desdobramento" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar desdobramento</span></a>
                     </li>
+                    <li>
+                        <a href="adicionar_grupamento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar grupamento</span></a>
+                    </li>
+                    <li>
+                        <a href="adicionar_bonificacao" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar bonificação</span></a>
+                    </li>
+                     <li>
+                        <a href="adicionar_cisao" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar cisão</span></a>
+                    </li>
                     <!-- li>
                         <a href="teste" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Adicionar valores aleatórios</span> </a>
