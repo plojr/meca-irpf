@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Models.Basico.Ticker;
 
 @Repository
 public interface TickerRepository extends JpaRepository<Ticker, Integer> {

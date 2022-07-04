@@ -5,9 +5,26 @@
  * representada pelo ticker, responsável pelo evento.
  * Quando o evento envolver outra empresa, como nos casos de cisão e fusão,
  * a variável responsável por ela estará na classe filha.
+ * Quanto às sobras:
+ * 
+ * Desdobramento:
+ *	- Não gera fração já que o valor de desdobramento é inteiro.
+ *
+ * Grupamento:
+ * 	- Se a venda do mês + fração > 20k: soma-se a fração à venda e deve-se pagar IR sobre lucro; deve ser declarado em "Renda Variável".
+ * 	- Caso contrário: a fração deve ser declarada em "Rendimentos Isentos e Não Tributáveis", no código "Outros".
+ * 
+ * Bonificação:
+ *  - Deve ser declarado em "Rendimentos Isentos e Não Tributáveis", no código "Outros".
+ * 
+ * Cisão:
+ * 	- Deve ser declarado em "Rendimentos Isentos e Não Tributáveis", no código "Outros".
+ * 
+ * Fusão:
+ *  - ?
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -23,6 +40,7 @@ import javax.persistence.OneToOne;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
 
 @Data

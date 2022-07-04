@@ -4,7 +4,7 @@
  * A variável tipo será 'c' para compra ou 'v' para venda.
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Basico;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

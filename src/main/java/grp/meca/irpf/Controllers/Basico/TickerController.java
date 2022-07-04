@@ -1,4 +1,4 @@
-package grp.meca.irpf.Controllers;
+package grp.meca.irpf.Controllers.Basico;
 
 import java.util.List;
 import java.util.Map;
@@ -9,12 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Controllers.ErroController;
+import grp.meca.irpf.Models.Basico.Ticker;
 import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
+@RequestMapping("/basico")
 public class TickerController {
 
 	@Autowired
@@ -24,7 +27,7 @@ public class TickerController {
 	public String editarTickerGet(Model model) {
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
 		model.addAttribute("tickers", tickers);
-		return "editar_ticker";
+		return "basico/editar_ticker";
 	}
 	
 	@PostMapping("/editar_ticker")
@@ -46,14 +49,14 @@ public class TickerController {
 				tickerRepository.save(ticker);
 			}
 		}
-		return "editar_ticker";
+		return "redirect:/basico/editar_ticker";
 	}
 	
 	@GetMapping("/adicionar_ticker")
 	public String adicionarTickerGet(Model model) {
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
 		model.addAttribute("tickers", tickers);
-		return "adicionar_ticker";
+		return "basico/adicionar_ticker";
 	}
 	
 	@PostMapping("/adicionar_ticker")
@@ -67,7 +70,7 @@ public class TickerController {
 		tickerRepository.save(ticker);
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
 		model.addAttribute("tickers", tickers);
-		return "adicionar_ticker";
+		return "redirect:/basico/adicionar_ticker";
 	}
 	
 	

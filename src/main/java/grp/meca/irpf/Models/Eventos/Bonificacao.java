@@ -9,7 +9,7 @@
  * 10% da quantidade de ações que possuía a um custo contábil de R$ 4,128165265 por ação.
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

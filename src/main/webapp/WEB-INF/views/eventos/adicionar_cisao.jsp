@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="../header.jsp" />
+<jsp:include page="header.jsp" />
 <title>Adicionar Cisão</title>
 <style>
 th, td {
@@ -12,7 +12,7 @@ th, td {
 <body>
 <div class="container-fluid">
 	<div class="row flex-nowrap">
-		<jsp:include page="../sidebar.jsp" />
+		<jsp:include page="sidebar.jsp" />
 		<div class="col py-3">
 			<form action="adicionar_cisao" method="post">
 				<div class="form-group">

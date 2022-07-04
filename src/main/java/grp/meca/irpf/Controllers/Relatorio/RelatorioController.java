@@ -1,4 +1,4 @@
-package grp.meca.irpf.Controllers;
+package grp.meca.irpf.Controllers.Relatorio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import grp.meca.irpf.Models.EventoExtraordinario;
-import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.Ticker;
+import grp.meca.irpf.Models.Eventos.EventoExtraordinario;
 import grp.meca.irpf.Pojos.Relatorio;
 import grp.meca.irpf.Repositories.BonificacaoRepository;
 import grp.meca.irpf.Repositories.CisaoRepository;

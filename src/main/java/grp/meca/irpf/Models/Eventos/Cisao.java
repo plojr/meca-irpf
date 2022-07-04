@@ -12,7 +12,7 @@
  * as ações ON, uma para as PN e uma para a UNIT.
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -25,6 +25,7 @@ import javax.persistence.OneToOne;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

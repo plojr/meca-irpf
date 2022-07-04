@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="header.jsp" />
+<jsp:include page="../header.jsp" />
 <style>
 th,td {
 	text-align: center
@@ -11,7 +11,7 @@ th,td {
 <body>
 <div class="container-fluid">
 	<div class="row flex-nowrap">
-		<jsp:include page="sidebar.jsp" />
+		<jsp:include page="../sidebar.jsp" />
 		<div class="col py-3">
 		<h3>Disclaimer</h3>
 		<p>O local onde os dados serão lançados podem sofrer modificações. Estes menus, opções, grupos etc têm, como referência, o ano de 2022.

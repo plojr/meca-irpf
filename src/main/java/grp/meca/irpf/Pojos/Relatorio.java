@@ -2,8 +2,8 @@ package grp.meca.irpf.Pojos;
 
 import java.util.List;
 
-import grp.meca.irpf.Models.EventoExtraordinario;
-import grp.meca.irpf.Models.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Eventos.EventoExtraordinario;
 import grp.meca.irpf.Services.DayTradeService;
 import grp.meca.irpf.Services.SwingTradeService;
 import lombok.Data;

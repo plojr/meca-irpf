@@ -11,10 +11,10 @@ import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
-import grp.meca.irpf.Models.EventoExtraordinario;
-import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Ordem;
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.Ordem;
+import grp.meca.irpf.Models.Basico.Ticker;
+import grp.meca.irpf.Models.Eventos.EventoExtraordinario;
 import grp.meca.irpf.Pojos.DadoSwingTrade;
 import grp.meca.irpf.Pojos.ItemCarteira;
 import grp.meca.irpf.Utils.MapUtil;
@@ -30,12 +30,16 @@ public class SwingTradeService extends TradeService {
 	 */
 	private Map<String, Pair<Integer, Double>> carteira;
 	private Map<Integer, Map<Integer, Double>> anoMesVenda;
+	private Map<Integer, Map<Integer, Double>> anoMesFracaoTributavel;
+	private Map<Integer, Map<Integer, Double>> anoMesFracaoNaoTributavel;
 
 	public SwingTradeService() {
 		this.anoMesLucro = new HashMap<>();
 		this.anoMesImposto = new HashMap<>();
 		this.anoMesPrejuizoAcumulado = new HashMap<>();
 		this.anoMesVenda = new HashMap<>();
+		this.anoMesFracaoTributavel = new HashMap<>();
+		this.anoMesFracaoNaoTributavel = new HashMap<>();
 		this.carteira = new HashMap<>();
 	}
 	
@@ -105,6 +109,8 @@ public class SwingTradeService extends TradeService {
 				proximoEvento = listaDeEventos.get(indiceProximoEvento++);
 			else break;
 		}
+		// Após calcular todas as frações de ações, incluí-las no relatório.
+		// TODO
 		// Calcular o imposto e o prejuízo acumulado.
 		double prejuizoAcumulado = 0;
 		for(Entry<Integer, Map<Integer, Double>> anoMap: anoMesLucro.entrySet()) {

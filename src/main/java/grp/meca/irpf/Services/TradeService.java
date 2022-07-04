@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.springframework.data.util.Pair;
 
-import grp.meca.irpf.Models.EventoExtraordinario;
-import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Ordem;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.Ordem;
+import grp.meca.irpf.Models.Eventos.EventoExtraordinario;
 import lombok.Data;
 
 @Data

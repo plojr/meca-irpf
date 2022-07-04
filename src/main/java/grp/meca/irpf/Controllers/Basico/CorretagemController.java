@@ -1,4 +1,4 @@
-package grp.meca.irpf.Controllers;
+package grp.meca.irpf.Controllers.Basico;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,16 +9,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Ordem;
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Controllers.ErroController;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.Ordem;
+import grp.meca.irpf.Models.Basico.Ticker;
 import grp.meca.irpf.Repositories.NotaDeCorretagemRepository;
 import grp.meca.irpf.Repositories.OrdemRepository;
 import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
+@RequestMapping("/basico")
 public class CorretagemController {
 	
 	@Autowired
@@ -36,12 +39,12 @@ public class CorretagemController {
 		for(NotaDeCorretagem nc: corretagens)
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc));
 		model.addAttribute("corretagens", corretagens);
-		return "corretagens";
+		return "basico/corretagens";
 	}
 	
 	@GetMapping("/adicionar_corretagem")
 	public String adicionarCorretagem() {
-		return "adicionar_corretagem";
+		return "basico/adicionar_corretagem";
 	}
 	
 	@PostMapping("/adicionar_corretagem")
@@ -76,6 +79,6 @@ public class CorretagemController {
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(notaDeCorretagem));
 		model.addAttribute("corretagens", corretagens);
 		// Por fim, redirecionar para a página onde as corretagens são mostradas.
-		return "redirect:/corretagens";
+		return "redirect:/basico/corretagens";
 	}
 }

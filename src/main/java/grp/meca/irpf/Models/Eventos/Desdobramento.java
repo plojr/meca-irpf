@@ -9,7 +9,7 @@
  * No caso da variável "proporção", para o exemplo acima, o valor será 10.
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 
 import org.springframework.data.util.Pair;
 
+import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

@@ -10,6 +10,19 @@
 		<h3>Resumo</h3>
 		<p>Este projeto é para aqueles que investem na Bolsa de Valores no Brasil e precisam de dados para declarar no software da Receita Federal. Ele é um dos módulos de um projeto pessoal chamado MeCa.
 		</p>
+		<h3>Menu</h3>
+		<p>
+		O menu "Básico" é onde serão cadastradas as notas de corretagem, as ordens e os tickers.
+		</p>
+		<p>
+		O menu "Eventos" é onde serão cadastrados os eventos corporativos, tais como, bonificação, grupamento, desdobramento, cisão e fusão.
+		</p>
+		<p>
+		O menu "Contabilidade" é onde serão geradas as vendas, imposto de renda, lucros etc.
+		</p>
+		<p>
+		O menu "Relatório" é onde serão gerados os dados para que seja feita a declaração do imposto de renda.
+		</p>
 		<h3>Disclaimer</h3>
 		<p>Não usem esta aplicação como verdade absoluta. Eu estudei como calcular cada dado, porém erros podem acontecer. Por isso, sugiro que usem esta aplicação só para comparar com os seus cálculos. Não me responsabilizo por informações erradas que esta aplicação possa apresentar, já que ela estará em constante evolução. Caso encontre alguma diferença discrepante com seus próprios cálculos, e se estiver disposto/disposta a encontrar qual parte do código está com problema, sinta-se à vontade para corrigi-lo.
 		</p>

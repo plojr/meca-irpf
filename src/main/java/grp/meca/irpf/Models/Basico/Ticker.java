@@ -3,7 +3,7 @@
  * no campo CNPJ em "Bens e Direitos".
  */
 
-package grp.meca.irpf.Models;
+package grp.meca.irpf.Models.Basico;
 
 import java.util.HashMap;
 import java.util.List;

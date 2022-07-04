@@ -10,10 +10,10 @@ import java.util.Set;
 
 import org.springframework.data.util.Pair;
 
-import grp.meca.irpf.Models.EventoExtraordinario;
-import grp.meca.irpf.Models.NotaDeCorretagem;
-import grp.meca.irpf.Models.Ordem;
-import grp.meca.irpf.Models.Ticker;
+import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
+import grp.meca.irpf.Models.Basico.Ordem;
+import grp.meca.irpf.Models.Basico.Ticker;
+import grp.meca.irpf.Models.Eventos.EventoExtraordinario;
 import grp.meca.irpf.Pojos.DadoDayTrade;
 import grp.meca.irpf.Utils.MapUtil;
 
