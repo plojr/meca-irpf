@@ -1,1 +1,0 @@
-Decidi separar as classes do tipo Entity das classes que não serão persistidas em banco. As classes que não serão persistidas em banco ficarão neste pacote, enquanto as outras ficarão no pacote grp.meca.irpf.Models.
