@@ -27,7 +27,6 @@
 package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,14 +37,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
-import org.springframework.data.util.Pair;
-
 import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
 
 @Data
 @MappedSuperclass
-public abstract class EventoExtraordinario implements Comparable<EventoExtraordinario> {
+public abstract class EventoExtraordinario {
 
 	public EventoExtraordinario() {}
 	
@@ -64,10 +61,4 @@ public abstract class EventoExtraordinario implements Comparable<EventoExtraordi
 	
 	@Column(nullable = false)
 	private LocalDate dataEvento;
-	
-	public abstract void aplicarEvento(Map<String, Pair<Integer, Double>> carteira);
-	
-	public int compareTo(EventoExtraordinario evento) {
-		return this.getDataEvento().compareTo(evento.getDataEvento());
-	}
 }

@@ -1,15 +1,12 @@
 package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
-import org.springframework.data.util.Pair;
 
 import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
@@ -37,9 +34,4 @@ public class Fusao extends EventoExtraordinario {
 	
 	@Column(nullable = false)
 	private double proporcaoDeAcoes;
-	
-	//TODO
-	public void aplicarEvento(Map<String, Pair<Integer, Double>> carteira) {
-		
-	}
 }

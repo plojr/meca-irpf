@@ -12,12 +12,9 @@
 package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import org.springframework.data.util.Pair;
 
 import grp.meca.irpf.Models.Basico.Ticker;
 import lombok.Data;
@@ -40,11 +37,4 @@ public class Desdobramento extends EventoExtraordinario {
 	@Column(nullable = false)
 	private double proporcao;
 	
-	public void aplicarEvento(Map<String, Pair<Integer, Double>> carteira) {
-		if(carteira == null) return;
-		String ticker = this.getTicker1().getCodigo();
-		if(!carteira.containsKey(ticker)) return;
-		int novaQuantidade = (int)(carteira.get(ticker).getFirst()*proporcao);
-		carteira.put(ticker, Pair.of(novaQuantidade, carteira.get(ticker).getSecond()));
-	}
 }
