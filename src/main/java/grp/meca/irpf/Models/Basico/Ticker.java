@@ -5,10 +5,6 @@
 
 package grp.meca.irpf.Models.Basico;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,13 +61,6 @@ public class Ticker {
 	
 	public Ticker(String codigo) {
 		this(codigo, "00000000000000", false);
-	}
-	
-	public static Map<String, String> getMapCodigoCnpj(List<Ticker> tickers) {
-		Map<String, String> tickerCnpj = new HashMap<>();
-		for(Ticker ticker: tickers)
-			tickerCnpj.put(ticker.getCodigo(), ticker.getCnpj());
-		return tickerCnpj;
 	}
 	
 }
