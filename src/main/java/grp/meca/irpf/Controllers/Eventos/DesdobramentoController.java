@@ -26,13 +26,13 @@ public class DesdobramentoController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@GetMapping("/adicionar_desdobramento")
+	@GetMapping("/desdobramento")
 	public String adicionarDesdobramentoGet(Model model) {
 		model.addAttribute("desdobramentos", desdobramentoRepository.findAll());
-		return "eventos/adicionar_desdobramento";
+		return "eventos/desdobramento";
 	}
 	
-	@PostMapping("/adicionar_desdobramento")
+	@PostMapping("/desdobramento")
 	public String adicionarDesdobramentoPost(@RequestParam Map<String, String> parametros, Model model) {
 		Ticker ticker = tickerRepository.findByCodigo(parametros.get("codigo"));
 		if(ticker == null) {
@@ -44,6 +44,6 @@ public class DesdobramentoController {
 		Desdobramento desdobramento = new Desdobramento(ticker, data, proporcao);
 		desdobramentoRepository.save(desdobramento);
 		model.addAttribute("desdobramentos", desdobramentoRepository.findAll());
-		return "redirect:/eventos/adicionar_desdobramento";
+		return "redirect:/eventos/desdobramento";
 	}
 }

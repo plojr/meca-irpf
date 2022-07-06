@@ -26,25 +26,25 @@ public class CisaoController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@GetMapping("/adicionar_cisao")
+	@GetMapping("/cisao")
 	public String cisaoGet(Model model) {
 		model.addAttribute("cisoes", cisaoRepository.findAll());
-		return "eventos/adicionar_cisao";
+		return "eventos/cisao";
 	}
 	
-	@PostMapping("/adicionar_cisao")
+	@PostMapping("/cisao")
 	public String cisaoPost(@RequestParam Map<String, String> parametros, Model model) {
-		Ticker tickerEmpresaOriginal = tickerRepository.findByCodigo(parametros.get("codigo"));
+		Ticker tickerEmpresaOriginal = tickerRepository.findByCodigo(parametros.get("codigo_empresa_original"));
 		if(tickerEmpresaOriginal == null)
-			tickerEmpresaOriginal = tickerRepository.save(new Ticker(parametros.get("codigo")));
-		Ticker tickerEmpresaCindida = tickerRepository.findByCodigo(parametros.get("codigo_cindida"));
-		if(tickerEmpresaCindida == null)
-			tickerEmpresaCindida = tickerRepository.save(new Ticker(parametros.get("codigo")));
+			tickerEmpresaOriginal = tickerRepository.save(new Ticker(parametros.get("codigo_empresa_original")));
+		Ticker tickerNovaEmpresa = tickerRepository.findByCodigo(parametros.get("codigo_nova_empresa"));
+		if(tickerNovaEmpresa == null)
+			tickerNovaEmpresa = tickerRepository.save(new Ticker(parametros.get("codigo_nova_empresa")));
 		LocalDate data = LocalDate.parse(parametros.get("data"));
 		double parteCindida = Double.parseDouble(parametros.get("parte_cindida"));
 		double proporcao = Double.parseDouble(parametros.get("proporcao"));
-		Cisao cisao = new Cisao(tickerEmpresaOriginal, data, tickerEmpresaCindida, parteCindida, proporcao);
+		Cisao cisao = new Cisao(tickerEmpresaOriginal, data, tickerNovaEmpresa, parteCindida, proporcao);
 		cisaoRepository.save(cisao);
-		return "redirect:/eventos/adicionar_cisao";
+		return "redirect:/eventos/cisao";
 	}
 }

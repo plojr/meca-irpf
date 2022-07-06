@@ -33,6 +33,9 @@ public class Bonificacao extends EventoExtraordinario {
 		this.preco = preco;
 	}
 
+	/*
+	 * É a proporção da bonificação em porcentagem
+	 */
 	@Column(nullable = false)
 	private double proporcao;
 	

@@ -33,21 +33,16 @@ public class CorretagemController {
 	@Autowired
 	private NotaDeCorretagemRepository corretagemRepository;
 	
-	@GetMapping("/corretagens")
-	public String mostrarCorretagens(Model model) {
+	@GetMapping("/corretagem")
+	public String adicionarCorretagem(Model model) {
 		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
 		for(NotaDeCorretagem nc: corretagens)
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc));
 		model.addAttribute("corretagens", corretagens);
-		return "basico/corretagens";
+		return "basico/corretagem";
 	}
 	
-	@GetMapping("/adicionar_corretagem")
-	public String adicionarCorretagem() {
-		return "basico/adicionar_corretagem";
-	}
-	
-	@PostMapping("/adicionar_corretagem")
+	@PostMapping("/corretagem")
 	public String salvarNotaDeCorretagem(@RequestParam Map<String, String> parametros, Model model) {
 		// Adicionar a nota de corretagem
 		NotaDeCorretagem nc = corretagemRepository.save(new NotaDeCorretagem(LocalDate.parse(parametros.get("data")), 
@@ -79,6 +74,6 @@ public class CorretagemController {
 			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(notaDeCorretagem));
 		model.addAttribute("corretagens", corretagens);
 		// Por fim, redirecionar para a página onde as corretagens são mostradas.
-		return "redirect:/basico/corretagens";
+		return "redirect:/basico/corretagem";
 	}
 }

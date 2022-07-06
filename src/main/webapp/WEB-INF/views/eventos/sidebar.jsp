@@ -10,19 +10,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="adicionar_desdobramento" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Desdobramentos</span> </a>
+                        <a href="desdobramento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Desdobramento</span> </a>
                     </li>
                     <li>
-                        <a href="adicionar_grupamento" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Grupamentos</span></a>
+                        <a href="grupamento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Grupamento</span></a>
                     </li>
                     <li>
-                        <a href="adicionar_bonificacao" class="nav-link px-0 align-middle">
+                        <a href="bonificacao" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Bonificação</span></a>
                     </li>
                     <li>
-                        <a href="adicionar_cisao" class="nav-link px-0 align-middle">
+                        <a href="cisao" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Cisão</span></a>
                     </li>
                     <li>

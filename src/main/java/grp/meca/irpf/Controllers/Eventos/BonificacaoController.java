@@ -26,13 +26,13 @@ public class BonificacaoController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@GetMapping("/adicionar_bonificacao")
+	@GetMapping("/bonificacao")
 	public String bonificacaoGet(Model model) {
 		model.addAttribute("bonificacoes", bonificacaoRepository.findAll());
-		return "eventos/adicionar_bonificacao";
+		return "eventos/bonificacao";
 	}
 	
-	@PostMapping("/adicionar_bonificacao")
+	@PostMapping("/bonificacao")
 	public String bonificacaoPost(@RequestParam Map<String, String> parametros, Model model) {
 		Ticker ticker = tickerRepository.findByCodigo(parametros.get("codigo"));
 		if(ticker == null)
@@ -41,6 +41,6 @@ public class BonificacaoController {
 		double proporcao = Double.parseDouble(parametros.get("proporcao"));
 		double preco = Double.parseDouble(parametros.get("preco"));
 		bonificacaoRepository.save(new Bonificacao(ticker, data, proporcao, preco));
-		return "redirect:/eventos/adicionar_bonificacao";
+		return "redirect:/eventos/bonificacao";
 	}
 }

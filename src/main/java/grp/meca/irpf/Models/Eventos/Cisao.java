@@ -40,13 +40,13 @@ public class Cisao extends EventoExtraordinario {
 		this.proporcaoDeAcoes = proporcaoDeAcoes;
 	}
 
-	// Esta é a empresa que foi cindida.
+	// Esta é a nova empresa.
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ticker_id_2", nullable = false)
 	private Ticker ticker2;
 	
 	/*
-	 * Parte cindida é o decimal equivalente à porcentagem que será cindida da empresa original.
+	 * Parte cindida é a porcentagem que será separada da empresa original.
 	 */
 	@Column(nullable = false)
 	private double parteCindida;

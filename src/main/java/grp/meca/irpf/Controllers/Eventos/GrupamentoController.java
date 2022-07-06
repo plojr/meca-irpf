@@ -26,13 +26,13 @@ public class GrupamentoController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@GetMapping("/adicionar_grupamento")
+	@GetMapping("/grupamento")
 	public String adicionarGrupamentoGet(Model model) {
 		model.addAttribute("grupamentos", grupamentoRepository.findAll());
-		return "eventos/adicionar_grupamento";
+		return "eventos/grupamento";
 	}
 	
-	@PostMapping("/adicionar_grupamento")
+	@PostMapping("/grupamento")
 	public String adicionarGrupamentoPost(@RequestParam Map<String, String> parametros, Model model) {
 		Ticker ticker = tickerRepository.findByCodigo(parametros.get("codigo"));
 		if(ticker == null)
@@ -42,6 +42,6 @@ public class GrupamentoController {
 		Grupamento grupamento = new Grupamento(ticker, data, proporcao);
 		grupamentoRepository.save(grupamento);
 		model.addAttribute("grupamentos", grupamentoRepository.findAll());
-		return "redirect:/eventos/adicionar_grupamento";
+		return "redirect:/eventos/grupamento";
 	}
 }

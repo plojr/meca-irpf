@@ -10,20 +10,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="corretagens" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Corretagens</span> </a>
+                        <a href="corretagem" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Corretagem</span> </a>
                     </li>
                     <li>
-                        <a href="adicionar_corretagem" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar Corretagem</span></a>
-                    </li>
-                    <li>
-                        <a href="adicionar_ticker" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Adicionar ticker</span></a>
-                    </li>
-                    <li>
-                        <a href="editar_ticker" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Editar ticker</span></a>
+                        <a href="ticker" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Ticker</span></a>
                     </li>
                 </ul>
             </div>

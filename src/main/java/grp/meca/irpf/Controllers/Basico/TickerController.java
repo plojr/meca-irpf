@@ -23,13 +23,6 @@ public class TickerController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@GetMapping("/editar_ticker")
-	public String editarTickerGet(Model model) {
-		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
-		model.addAttribute("tickers", tickers);
-		return "basico/editar_ticker";
-	}
-	
 	@PostMapping("/editar_ticker")
 	public String editarTickerPost(@RequestParam Map<String, String> parametros, Model model) {
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
@@ -49,17 +42,17 @@ public class TickerController {
 				tickerRepository.save(ticker);
 			}
 		}
-		return "redirect:/basico/editar_ticker";
+		return "redirect:/basico/ticker";
 	}
 	
-	@GetMapping("/adicionar_ticker")
+	@GetMapping("/ticker")
 	public String adicionarTickerGet(Model model) {
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
 		model.addAttribute("tickers", tickers);
-		return "basico/adicionar_ticker";
+		return "basico/ticker";
 	}
 	
-	@PostMapping("/adicionar_ticker")
+	@PostMapping("/ticker")
 	public String adicionarTickerPost(@ModelAttribute("ticker") Ticker ticker, Model model) {
 		if(tickerRepository.findByCodigo(ticker.getCodigo()) != null) {
 			model.addAttribute("mensagemDeErro", "Ticker " + ticker.getCodigo() + " já existente!");
@@ -70,7 +63,7 @@ public class TickerController {
 		tickerRepository.save(ticker);
 		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
 		model.addAttribute("tickers", tickers);
-		return "redirect:/basico/adicionar_ticker";
+		return "redirect:/basico/ticker";
 	}
 	
 	
