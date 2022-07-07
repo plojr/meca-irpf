@@ -19,9 +19,11 @@ public class Aquisicao extends EventoExtraordinario {
 
 	public Aquisicao() {}
 	
-	public Aquisicao(Ticker ticker1, LocalDate dataEvento, Ticker ticker2) {
+	public Aquisicao(Ticker ticker1, LocalDate dataEvento, Ticker ticker2, double proporcaoDeAcoes, double precoPorAcao) {
 		super(ticker1, dataEvento);
 		this.ticker2 = ticker2;
+		this.proporcaoDeAcoes = proporcaoDeAcoes;
+		this.precoPorAcao = precoPorAcao;
 	}
 	
 	// Esta é a empresa que será adquirida.
