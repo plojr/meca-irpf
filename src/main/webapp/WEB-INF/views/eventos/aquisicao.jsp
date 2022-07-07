@@ -16,12 +16,12 @@ th, td {
 		<div class="col py-3">
 			<form action="aquisicao" method="post">
 				<div class="form-group">
-					<label for="codigo_id">Código da empresa compradora</label>
+					<label for="codigo_empresa_compradora_id">Código da empresa compradora</label>
 					<input type="text" id="codigo_empresa_compradora_id" name="codigo_empresa_compradora" class="form-control" 
 						   placeholder="Digite o código da empresa compradora" required />
 				</div>
 				<div class="form-group">
-					<label for="codigo_id">Código da segunda adquirida</label>
+					<label for="codigo_empresa_adquirida_id">Código da segunda adquirida</label>
 					<input type="text" id="codigo_empresa_adquirida_id" name="codigo_empresa_adquirida" class="form-control"
 						   placeholder="Digite o código da empresa adquirida" required />
 				</div>
