@@ -47,7 +47,7 @@ public class TickerController {
 	
 	@GetMapping("/ticker")
 	public String adicionarTickerGet(Model model) {
-		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
+		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo().parallelStream().filter(ticker -> ticker.getCodigo().charAt(0) == 'c').toList();
 		model.addAttribute("tickers", tickers);
 		return "basico/ticker";
 	}
@@ -61,8 +61,7 @@ public class TickerController {
 		if(ticker.getCnpj().equals(""))
 			ticker.setCnpj("00000000000000");
 		tickerRepository.save(ticker);
-		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
-		model.addAttribute("tickers", tickers);
+		model.addAttribute("tickers", tickerRepository.findAllByOrderByCodigo());
 		return "redirect:/basico/ticker";
 	}
 	

@@ -3,7 +3,7 @@ package grp.meca.irpf.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import grp.meca.irpf.Models.Eventos.Fusao;
+import grp.meca.irpf.Models.Eventos.Aquisicao;
 
 @Repository
-public interface FusaoRepository extends JpaRepository<Fusao, Integer> {}
+public interface AquisicaoRepository extends JpaRepository<Aquisicao, Integer> {}

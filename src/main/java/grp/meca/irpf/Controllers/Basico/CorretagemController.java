@@ -36,8 +36,7 @@ public class CorretagemController {
 	@GetMapping("/corretagem")
 	public String adicionarCorretagem(Model model) {
 		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
-		for(NotaDeCorretagem nc: corretagens)
-			nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc));
+		corretagens.forEach(nc -> nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc)));
 		model.addAttribute("corretagens", corretagens);
 		return "basico/corretagem";
 	}

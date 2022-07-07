@@ -27,13 +27,13 @@ public class DesdobramentoController {
 	private TickerRepository tickerRepository;
 	
 	@GetMapping("/desdobramento")
-	public String adicionarDesdobramentoGet(Model model) {
+	public String desdobramentoGet(Model model) {
 		model.addAttribute("desdobramentos", desdobramentoRepository.findAll());
 		return "eventos/desdobramento";
 	}
 	
 	@PostMapping("/desdobramento")
-	public String adicionarDesdobramentoPost(@RequestParam Map<String, String> parametros, Model model) {
+	public String desdobramentoPost(@RequestParam Map<String, String> parametros, Model model) {
 		Ticker ticker = tickerRepository.findByCodigo(parametros.get("codigo"));
 		if(ticker == null) {
 			ticker = new Ticker(parametros.get("codigo"));
