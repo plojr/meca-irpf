@@ -1,13 +1,20 @@
 package grp.meca.irpf.Controllers.Eventos;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import grp.meca.irpf.Models.Basico.Ticker;
+import grp.meca.irpf.Models.Eventos.Fusao;
 import grp.meca.irpf.Repositories.FusaoRepository;
+import grp.meca.irpf.Repositories.TickerRepository;
 
 @Controller
 @RequestMapping("/eventos")
@@ -16,6 +23,9 @@ public class FusaoController {
 	@Autowired
 	private FusaoRepository fusaoRepository;
 	
+	@Autowired
+	private TickerRepository tickerRepository;
+	
 	@GetMapping("fusao")
 	public String fusaoGet(Model model) {
 		model.addAttribute("fusoes", fusaoRepository.findAll());
@@ -23,8 +33,17 @@ public class FusaoController {
 	}
 	
 	@PostMapping("fusao")
-	public String fusaoPost() {
-		
+	public String fusaoPost(@RequestParam("parametros") Map<String, String> parametros) {
+		Ticker tickerEmpresa1 = tickerRepository.findByCodigo(parametros.get("codigo_1"));
+		if(tickerEmpresa1 == null) tickerEmpresa1 = tickerRepository.save(new Ticker(parametros.get("codigo_1")));
+		Ticker tickerEmpresa2 = tickerRepository.findByCodigo(parametros.get("codigo_2"));
+		if(tickerEmpresa2 == null) tickerEmpresa2 = tickerRepository.save(new Ticker(parametros.get("codigo_2")));
+		Ticker tickerNovaEmpresa = tickerRepository.findByCodigo(parametros.get("codigo_nova"));
+		if(tickerNovaEmpresa == null) tickerNovaEmpresa = tickerRepository.save(new Ticker(parametros.get("codigo_nova")));
+		LocalDate data = LocalDate.parse(parametros.get("data"));
+		double proporcaoEmpresa1 = Double.parseDouble(parametros.get("proporcao_empresa_1"));
+		double proporcaoEmpresa2 = Double.parseDouble(parametros.get("proporcao_empresa_2"));
+		fusaoRepository.save(new Fusao(tickerEmpresa1, data, tickerEmpresa2, tickerNovaEmpresa, proporcaoEmpresa1, proporcaoEmpresa2));
 		return "redirect:/eventos/fusao";
 	}
 }
