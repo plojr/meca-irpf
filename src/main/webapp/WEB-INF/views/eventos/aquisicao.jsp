@@ -31,12 +31,12 @@ th, td {
 				</div>
 				<div class="form-group">
 					<label for="proporcao_acoes_id">Proporção de ações</label>
-					<input type="number" min="0.00001" step="0.00001" id="proporcao_acoes_id" name="proporcao_acoes" class="form-control" required
+					<input type="number" min="0.00001" step="0.00001" id="proporcao_acoes_id" name="proporcao_acoes" class="form-control" 
 						   placeholder="Quantidade de ações da empresa compradora que o investidor vai receber por ação da empresa adquirida." />
 				</div>
 				<div class="form-group">
 					<label for="preco_por_acao_id">Preço por ação</label>
-					<input type="number" min="0.00001" step="0.00001" id="preco_por_acao_id" name="preco_por_acao" class="form-control" required
+					<input type="number" min="0.00001" step="0.00001" id="preco_por_acao_id" name="preco_por_acao" class="form-control" 
 						   placeholder="Preço por ação que a empresa compradora poderá pagar por ação da empresa adquirida." />
 				</div>
 				<br />

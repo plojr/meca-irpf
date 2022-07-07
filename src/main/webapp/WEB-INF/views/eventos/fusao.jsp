@@ -33,12 +33,12 @@ th, td {
 				</div>
 				<div class="form-group">
 					<label for="proporcao_empresa_1_id">Proporção da empresa 1</label>
-					<input type="number" min="0.01" step="0.01" id="proporcao_empresa_1_id" name="proporcao_empresa_1" class="form-control" required
+					<input type="number" min="0.00001" step="0.00001" id="proporcao_empresa_1_id" name="proporcao_empresa_1" class="form-control" required
 						   placeholder="Proporção de ações da empresa 1 que o investidor precisa ter para que ele ganhe 1 ação da nova empresa." />
 				</div>
 				<div class="form-group">
 					<label for="proporcao_empresa_2_id">Proporção da empresa 2</label>
-					<input type="number" min="0.01" step="0.01" id="proporcao_empresa_2_id" name="proporcao_empresa_2" class="form-control" required
+					<input type="number" min="0.00001" step="0.00001" id="proporcao_empresa_2_id" name="proporcao_empresa_2" class="form-control" required
 						   placeholder="Proporção de ações da empresa 2 que o investidor precisa ter para que ele ganhe 1 ação da nova empresa." />
 				</div>
 				<br />

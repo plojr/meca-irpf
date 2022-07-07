@@ -19,7 +19,7 @@ public class Aquisicao extends EventoExtraordinario {
 
 	public Aquisicao() {}
 	
-	public Aquisicao(Ticker ticker1, LocalDate dataEvento, Ticker ticker2, double proporcaoDeAcoes, double precoPorAcao) {
+	public Aquisicao(Ticker ticker1, LocalDate dataEvento, Ticker ticker2, Double proporcaoDeAcoes, Double precoPorAcao) {
 		super(ticker1, dataEvento);
 		this.ticker2 = ticker2;
 		this.proporcaoDeAcoes = proporcaoDeAcoes;
@@ -32,8 +32,8 @@ public class Aquisicao extends EventoExtraordinario {
 	private Ticker ticker2;
 	
 	@Column(nullable = true)
-	private double proporcaoDeAcoes;
+	private Double proporcaoDeAcoes;
 	
 	@Column(nullable = true)
-	private double precoPorAcao;
+	private Double precoPorAcao;
 }

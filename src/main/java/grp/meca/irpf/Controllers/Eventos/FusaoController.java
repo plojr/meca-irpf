@@ -33,7 +33,7 @@ public class FusaoController {
 	}
 	
 	@PostMapping("fusao")
-	public String fusaoPost(@RequestParam("parametros") Map<String, String> parametros) {
+	public String fusaoPost(@RequestParam Map<String, String> parametros) {
 		Ticker tickerEmpresa1 = tickerRepository.findByCodigo(parametros.get("codigo_1"));
 		if(tickerEmpresa1 == null) tickerEmpresa1 = tickerRepository.save(new Ticker(parametros.get("codigo_1")));
 		Ticker tickerEmpresa2 = tickerRepository.findByCodigo(parametros.get("codigo_2"));

@@ -47,8 +47,7 @@ public class TickerController {
 	
 	@GetMapping("/ticker")
 	public String adicionarTickerGet(Model model) {
-		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo().parallelStream().filter(ticker -> ticker.getCodigo().charAt(0) == 'c').toList();
-		model.addAttribute("tickers", tickers);
+		model.addAttribute("tickers", tickerRepository.findAllByOrderByCodigo());
 		return "basico/ticker";
 	}
 	

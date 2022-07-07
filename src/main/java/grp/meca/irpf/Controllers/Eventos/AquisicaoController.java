@@ -33,14 +33,14 @@ public class AquisicaoController {
 	}
 	
 	@PostMapping("/aquisicao")
-	public String aquisicaoPost(@RequestParam("parametros") Map<String, String> parametros) {
+	public String aquisicaoPost(@RequestParam Map<String, String> parametros) {
 		Ticker tickerEmpresaCompradora = tickerRepository.findByCodigo(parametros.get("codigo_empresa_compradora"));
 		if(tickerEmpresaCompradora == null) tickerEmpresaCompradora = tickerRepository.save(new Ticker(parametros.get("codigo_empresa_compradora")));
 		Ticker tickerEmpresaAdquirida = tickerRepository.findByCodigo(parametros.get("codigo_empresa_adquirida"));
 		if(tickerEmpresaAdquirida == null) tickerEmpresaAdquirida = tickerRepository.save(new Ticker(parametros.get("codigo_empresa_adquirida")));
 		LocalDate data = LocalDate.parse(parametros.get("data"));
-		double proporcaoAcoes = Double.parseDouble(parametros.get("proporcao_acoes"));
-		double precoPorAcao = Double.parseDouble(parametros.get("preco_por_acao"));
+		Double proporcaoAcoes = parametros.get("proporcao_acoes").equals("") ? null : Double.parseDouble(parametros.get("proporcao_acoes"));
+		Double precoPorAcao = parametros.get("preco_por_acao").equals("") ? null : Double.parseDouble(parametros.get("preco_por_acao"));
 		aquisicaoRepository.save(new Aquisicao(tickerEmpresaCompradora, data, tickerEmpresaAdquirida, proporcaoAcoes, precoPorAcao));
 		return "redirect:/eventos/aquisicao";
 	}
