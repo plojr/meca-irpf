@@ -16,16 +16,16 @@ th, td {
 		<div class="col py-3">
 			<form action="fusao" method="post">
 				<div class="form-group">
-					<label for="codigo_id">Código da primeira empresa</label>
+					<label for="codigo_1_id">Código da primeira empresa</label>
 					<input type="text" id="codigo_1_id" name="codigo_1" class="form-control" placeholder="Digite o código da primeira empresa" required />
 				</div>
 				<div class="form-group">
-					<label for="codigo_id">Código da segunda empresa</label>
+					<label for="codigo_2_id">Código da segunda empresa</label>
 					<input type="text" id="codigo_2_id" name="codigo_2" class="form-control" placeholder="Digite o código da segunda empresa" required />
 				</div>
 				<div class="form-group">
-					<label for="codigo_id">Código da nova empresa</label>
-					<input type="text" id="codigo_3_id" name="codigo_3" class="form-control" placeholder="Digite o código da nova empresa" required />
+					<label for="codigo_nova_id">Código da nova empresa</label>
+					<input type="text" id="codigo_nova_id" name="codigo_nova" class="form-control" placeholder="Digite o código da nova empresa" required />
 				</div>
 				<div class="form-group">
 					<label for="data_id">Data da Fusão</label>
@@ -33,7 +33,7 @@ th, td {
 				</div>
 				<div class="form-group">
 					<label for="proporcao_empresa_1_id">Proporção da empresa 1</label>
-					<input type="number" min="0.01" step="0.01" id="proporcao_empresa_2_id" name="proporcao_empresa_2" class="form-control" required
+					<input type="number" min="0.01" step="0.01" id="proporcao_empresa_1_id" name="proporcao_empresa_1" class="form-control" required
 						   placeholder="Proporção de ações da empresa 1 que o investidor precisa ter para que ele ganhe 1 ação da nova empresa." />
 				</div>
 				<div class="form-group">
