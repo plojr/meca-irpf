@@ -16,11 +16,11 @@ th, td {
 		<div class="col py-3">
 			<form action="cisao" method="post">
 				<div class="form-group">
-					<label for="codigo_id">Código da empresa original</label>
+					<label for="codigo_empresa_original_id">Código da empresa original</label>
 					<input type="text" id="codigo_empresa_original_id" name="codigo_empresa_original" class="form-control" placeholder="Digite o código da empresa original" required />
 				</div>
 				<div class="form-group">
-					<label for="codigo_id">Código da nova empresa</label>
+					<label for="codigo_nova_empresa_id">Código da nova empresa</label>
 					<input type="text" id="codigo_nova_empresa_id" name="codigo_nova_empresa" class="form-control" placeholder="Digite o código da nova empresa" required />
 				</div>
 				<div class="form-group">
@@ -33,7 +33,7 @@ th, td {
 						   placeholder="Digite, em porcentagem, a parte cindida" />
 				</div>
 				<div class="form-group">
-					<label for="parte_cindida_id">Proporção</label>
+					<label for="proporcao_id">Proporção</label>
 					<input type="number" min="0.01" step="0.01" id="proporcao_id" name="proporcao" class="form-control" required
 						   placeholder="Digite a proporção de ações que o investidor receberá da nova empresa para cada ação da empresa original" />
 				</div>
