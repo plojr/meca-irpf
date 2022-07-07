@@ -43,7 +43,7 @@ th, td {
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 			<br />
-			<h3>FusÃµes existentes</h3>
+			<h3>Aquisições existentes</h3>
 			<table class="table table-bordered">
 				<tr>
 					<th>Código da empresa compradora</th>
@@ -52,13 +52,13 @@ th, td {
 					<th>Proporção de ações</th>
 					<th>Preço por ação</th>
 				<tr>
-				<c:forEach items="${fusoes}" var="fusao">
+				<c:forEach items="${aquisicoes}" var="aquisicao">
 					<tr>
-						<td><c:out value="${fusao.ticker1.codigo}"></c:out></td>
-						<td><c:out value="${fusao.ticker2.codigo}"></c:out></td>
-						<td><c:out value="${fusao.dataEvento}"></c:out></td>
-						<td><c:out value="${fusao.proporcaoDeAcoes}"></c:out></td>
-						<td><c:out value="${fusao.precoPorAcao}"></c:out></td>
+						<td><c:out value="${aquisicao.ticker1.codigo}"></c:out></td>
+						<td><c:out value="${aquisicao.ticker2.codigo}"></c:out></td>
+						<td><c:out value="${aquisicao.dataEvento}"></c:out></td>
+						<td><c:out value="${aquisicao.proporcaoDeAcoes}"></c:out></td>
+						<td><c:out value="${aquisicao.precoPorAcao}"></c:out></td>
 					</tr>
 				</c:forEach>
 			</table>
