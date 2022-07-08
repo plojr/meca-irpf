@@ -10,5 +10,5 @@ import grp.meca.irpf.Models.Basico.NotaDeCorretagem;
 @Repository
 public interface NotaDeCorretagemRepository extends JpaRepository<NotaDeCorretagem, Integer> {
 	
-	List<NotaDeCorretagem> findAllByOrderByDateAsc();
+	List<NotaDeCorretagem> findAllByOrderByDataAsc();
 }

@@ -35,7 +35,7 @@ public class CorretagemController {
 	
 	@GetMapping("/corretagem")
 	public String adicionarCorretagem(Model model) {
-		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
+		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDataAsc();
 		corretagens.forEach(nc -> nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc)));
 		model.addAttribute("corretagens", corretagens);
 		return "basico/corretagem";
@@ -66,7 +66,7 @@ public class CorretagemController {
 		}
 		// Pegar a lista de corretagens do banco para para poder mostrar na view.
 		// Lembrar de pegá-la ordenada.
-		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDateAsc();
+		List<NotaDeCorretagem> corretagens = corretagemRepository.findAllByOrderByDataAsc();
 		// Para cada nota de corretagem, a lista de ordens está vazia.
 		// Por isso, é necessário setar a lista de ordens na nota de corretagem.
 		for(NotaDeCorretagem notaDeCorretagem: corretagens)

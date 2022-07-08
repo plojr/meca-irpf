@@ -137,7 +137,7 @@ function adicionarLinha() {
 			<c:if test="${empty corretagens}">Não há dados.</c:if>
 			<c:forEach items="${corretagens}" var="corretagem">
 				<span>Nota de Corretagem</span>
-				<div><label>Data:</label> <span><c:out value="${corretagem.date}"></c:out></span></div>
+				<div><label>Data:</label> <span><c:out value="${corretagem.data}"></c:out></span></div>
 				<div><label>Valor líquido:</label> <span><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" 
 							value="${corretagem.valorLiquido}" /></span></div>
 				<span>Ordens</span>
