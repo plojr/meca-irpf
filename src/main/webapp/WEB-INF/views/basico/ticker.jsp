@@ -21,7 +21,7 @@ function toggleForm(index) {
 	<div class="row flex-nowrap">
 		<jsp:include page="sidebar.jsp" />
 		<div class="col py-3">
-			<form action="adicionar_ticker" method="post">
+			<form action="ticker" method="post">
 				<div class="form-group">
 					<label for="codigo_id">Código</label>
 					<input type="text" id="codigo_id" name="codigo" class="form-control" placeholder="Digite o código" required />
@@ -39,25 +39,6 @@ function toggleForm(index) {
 			</form>
 			<br />
 			<h3>Tickers existentes</h3>
-			<!-- table class="table table-bordered">
-				<tr>
-					<th>Código</th>
-					<th>CNPJ</th>
-					<th>BDR?</th>
-				<tr>
-				<c:forEach items="${tickers}" var="ticker">
-					<tr>
-						<td><c:out value="${ticker.codigo}"></c:out></td>
-						<td><c:out value="${ticker.cnpj}"></c:out></td>
-						<td>
-							<c:choose>
-								<c:when test="${ticker.bdr}">Sim</c:when>
-								<c:otherwise>Não</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
-				</c:forEach>
-			</table-->
 			<form action="editar_ticker" method="post">
 			<input type="hidden" name="quantidade" value="${tickers.size()}" />
 			<table class="table table-bordered">

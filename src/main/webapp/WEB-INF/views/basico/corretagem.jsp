@@ -111,7 +111,7 @@ function adicionarLinha() {
 	<div class="row flex-nowrap">
 		<jsp:include page="sidebar.jsp" />
 		<div class="col py-3">
-			<form action="adicionar_corretagem" method="post">
+			<form action="corretagem" method="post">
 				<div class="form-group">
 					<label for="data_id">Data da nota de corretagem</label>
 					<input type="date" id="data_id" name="data" class="form-control" placeholder="Coloque a data da nota de corretagem" required />

@@ -10,12 +10,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="desdobramento" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Desdobramento</span> </a>
-                    </li>
-                    <li>
-                        <a href="grupamento" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Grupamento</span></a>
+                        <a href="aquisicao" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Aquisição</span></a>
                     </li>
                     <li>
                         <a href="bonificacao" class="nav-link px-0 align-middle">
@@ -26,12 +22,16 @@
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Cisão</span></a>
                     </li>
                     <li>
+                        <a href="desdobramento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Desdobramento</span> </a>
+                    </li>
+                    <li>
                         <a href="fusao" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Fusão</span></a>
                     </li>
                     <li>
-                        <a href="aquisicao" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Aquisição</span></a>
+                        <a href="grupamento" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Grupamento</span></a>
                     </li>
                 </ul>
             </div>

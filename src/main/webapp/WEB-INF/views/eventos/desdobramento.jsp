@@ -14,7 +14,7 @@ th, td {
 	<div class="row flex-nowrap">
 		<jsp:include page="sidebar.jsp" />
 		<div class="col py-3">
-			<form action="adicionar_desdobramento" method="post">
+			<form action="desdobramento" method="post">
 				<div class="form-group">
 					<label for="codigo_id">Código</label>
 					<input type="text" id="codigo_id" name="codigo" class="form-control" placeholder="Digite o código" required />
