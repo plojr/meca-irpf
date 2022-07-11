@@ -10,11 +10,11 @@ th, td {
 </style>
 <script>
 function toggleForm(index) {
-	document.getElementById("id_codigo_empresa_compradora_" + index).disabled = !document.getElementById("id_codigo_empresa_compradora_" + index).disabled;
-	document.getElementById("id_codigo_empresa_adquirida_" + index).disabled = !document.getElementById("id_codigo_empresa_adquirida_" + index).disabled;
-	document.getElementById("id_data_" + index).disabled = !document.getElementById("id_data_" + index).disabled;
-	document.getElementById("id_proporcao_acoes_" + index).disabled = !document.getElementById("id_proporcao_acoes_" + index).disabled;
-	document.getElementById("id_preco_por_acao_" + index).disabled = !document.getElementById("id_preco_por_acao_" + index).disabled;
+	document.getElementById("codigo_empresa_compradora_" + index).disabled = !document.getElementById("codigo_empresa_compradora_" + index).disabled;
+	document.getElementById("codigo_empresa_adquirida_" + index).disabled = !document.getElementById("codigo_empresa_adquirida_" + index).disabled;
+	document.getElementById("data_" + index).disabled = !document.getElementById("data_" + index).disabled;
+	document.getElementById("proporcao_acoes_" + index).disabled = !document.getElementById("proporcao_acoes_" + index).disabled;
+	document.getElementById("preco_por_acao_" + index).disabled = !document.getElementById("preco_por_acao_" + index).disabled;
 }
 </script>
 </head>
@@ -68,23 +68,24 @@ function toggleForm(index) {
 						<tr>
 							<td>
 							<input type="hidden" name="id_${loop.index}" value="${aquisicao.id}" />
-							<input class="form-control" type="text" value="${aquisicao.ticker1.codigo}" disabled id="id_codigo_empresa_compradora_${loop.index}" 
-									name="codigo_empresa_compradora_${loop.index}" />
+							<input class="form-control" type="text" value="${aquisicao.ticker1.codigo}" disabled 
+									id="codigo_empresa_compradora_${loop.index}" name="codigo_empresa_compradora_${loop.index}" />
 							</td>
 							<td>
-							<input class="form-control" type="text" value="${aquisicao.ticker2.codigo}" disabled id="id_codigo_empresa_adquirida_${loop.index}" 
-									name="codigo_empresa_adquirida_${loop.index}" />
+							<input class="form-control" type="text" value="${aquisicao.ticker2.codigo}" disabled 
+									id="codigo_empresa_adquirida_${loop.index}" name="codigo_empresa_adquirida_${loop.index}" />
 							</td>
 							<td>
-							<input class="form-control" type="date" value="${aquisicao.dataEvento}" disabled id="id_data_${loop.index}" name="data_${loop.index}" />
+							<input class="form-control" type="date" value="${aquisicao.dataEvento}" disabled id="data_${loop.index}" 
+									name="data_${loop.index}" />
 							</td>
 							<td>
 							<input class="form-control" type="number" min="0" step="0.00001" value="${aquisicao.proporcaoDeAcoes}" disabled 
-									id="id_proporcao_acoes_${loop.index}"  name="proporcao_acoes_${loop.index}" />
+									id="proporcao_acoes_${loop.index}"  name="proporcao_acoes_${loop.index}" />
 							</td>
 							<td>
 							<input class="form-control" type="number" min="0" step="0.00001" value="${aquisicao.precoPorAcao}" disabled 
-									id="id_preco_por_acao_${loop.index}" name="preco_por_acao_${loop.index}" />
+									id="preco_por_acao_${loop.index}" name="preco_por_acao_${loop.index}" />
 							</td>
 							<td>
 							<input type="checkbox" id="editar_${loop.index}" name="editar_${loop.index}" onchange="toggleForm(${loop.index})"/>
