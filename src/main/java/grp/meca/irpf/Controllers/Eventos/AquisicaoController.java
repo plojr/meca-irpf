@@ -28,7 +28,7 @@ public class AquisicaoController {
 	
 	@GetMapping("/aquisicao")
 	public String aquisicaoGet(Model model) {
-		model.addAttribute("aquisicoes", aquisicaoRepository.findAll());
+		model.addAttribute("aquisicoes", aquisicaoRepository.findAllByOrderByDataEventoAsc());
 		return "eventos/aquisicao";
 	}
 	
@@ -39,9 +39,28 @@ public class AquisicaoController {
 		Ticker tickerEmpresaAdquirida = tickerRepository.findByCodigo(parametros.get("codigo_empresa_adquirida"));
 		if(tickerEmpresaAdquirida == null) tickerEmpresaAdquirida = tickerRepository.save(new Ticker(parametros.get("codigo_empresa_adquirida")));
 		LocalDate data = LocalDate.parse(parametros.get("data"));
-		Double proporcaoAcoes = parametros.get("proporcao_acoes").equals("") ? null : Double.parseDouble(parametros.get("proporcao_acoes"));
-		Double precoPorAcao = parametros.get("preco_por_acao").equals("") ? null : Double.parseDouble(parametros.get("preco_por_acao"));
+		Double proporcaoAcoes = parametros.get("proporcao_acoes").equals("") ? 0. : Double.parseDouble(parametros.get("proporcao_acoes"));
+		Double precoPorAcao = parametros.get("preco_por_acao").equals("") ? 0. : Double.parseDouble(parametros.get("preco_por_acao"));
 		aquisicaoRepository.save(new Aquisicao(tickerEmpresaCompradora, data, tickerEmpresaAdquirida, proporcaoAcoes, precoPorAcao));
+		return "redirect:/eventos/aquisicao";
+	}
+	
+	@PostMapping("/editar_aquisicao")
+	public String editarAquisicaoPost(@RequestParam Map<String, String> parametros, Model model) {
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				Ticker empresaCompradora = tickerRepository.findByCodigo(parametros.get("codigo_empresa_compradora_" + i));
+				Ticker empresaAdquirida = tickerRepository.findByCodigo(parametros.get("codigo_empresa_adquirida_" + i));
+				LocalDate data = LocalDate.parse(parametros.get("data_" + i));
+				double proporcaoDeAcoes = Double.parseDouble(parametros.get("proporcao_acoes_" + i));
+				double precoPorAcao = Double.parseDouble(parametros.get("preco_por_acao_" + i));
+				Aquisicao aquisicao = new Aquisicao(empresaCompradora, data, empresaAdquirida, proporcaoDeAcoes, precoPorAcao);
+				aquisicao.setId(id);
+				aquisicaoRepository.save(aquisicao);
+			}
+		}
 		return "redirect:/eventos/aquisicao";
 	}
 }

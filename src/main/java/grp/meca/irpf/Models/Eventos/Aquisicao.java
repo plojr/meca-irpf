@@ -31,9 +31,9 @@ public class Aquisicao extends EventoExtraordinario {
 	@JoinColumn(name = "ticker_id_2", nullable = false)
 	private Ticker ticker2;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Double proporcaoDeAcoes;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Double precoPorAcao;
 }

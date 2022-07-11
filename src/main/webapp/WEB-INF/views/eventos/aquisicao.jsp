@@ -8,6 +8,15 @@ th, td {
 	text-align: center
 }
 </style>
+<script>
+function toggleForm(index) {
+	document.getElementById("id_codigo_empresa_compradora_" + index).disabled = !document.getElementById("id_codigo_empresa_compradora_" + index).disabled;
+	document.getElementById("id_codigo_empresa_adquirida_" + index).disabled = !document.getElementById("id_codigo_empresa_adquirida_" + index).disabled;
+	document.getElementById("id_data_" + index).disabled = !document.getElementById("id_data_" + index).disabled;
+	document.getElementById("id_proporcao_acoes_" + index).disabled = !document.getElementById("id_proporcao_acoes_" + index).disabled;
+	document.getElementById("id_preco_por_acao_" + index).disabled = !document.getElementById("id_preco_por_acao_" + index).disabled;
+}
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -31,12 +40,12 @@ th, td {
 				</div>
 				<div class="form-group">
 					<label for="proporcao_acoes_id">Proporção de ações</label>
-					<input type="number" min="0.00001" step="0.00001" id="proporcao_acoes_id" name="proporcao_acoes" class="form-control" 
+					<input type="number" min="0" step="0.00001" id="proporcao_acoes_id" name="proporcao_acoes" class="form-control" 
 						   placeholder="Quantidade de ações da empresa compradora que o investidor vai receber por ação da empresa adquirida." />
 				</div>
 				<div class="form-group">
 					<label for="preco_por_acao_id">Preço por ação</label>
-					<input type="number" min="0.00001" step="0.00001" id="preco_por_acao_id" name="preco_por_acao" class="form-control" 
+					<input type="number" min="0" step="0.00001" id="preco_por_acao_id" name="preco_por_acao" class="form-control" 
 						   placeholder="Preço por ação que a empresa compradora poderá pagar por ação da empresa adquirida." />
 				</div>
 				<br />
@@ -44,25 +53,48 @@ th, td {
 			</form>
 			<br />
 			<h3>Aquisições existentes</h3>
-			<table class="table table-bordered">
-				<tr>
-					<th>Código da empresa compradora</th>
-					<th>Código da empresa adquirida</th>
-					<th>Data da aquisição</th>
-					<th>Proporção de ações</th>
-					<th>Preço por ação</th>
-				<tr>
-				<c:forEach items="${aquisicoes}" var="aquisicao">
+			<form action="editar_aquisicao" method="post">
+				<input type="hidden" name="quantidade" value="${aquisicoes.size()}" />
+				<table class="table table-bordered">
 					<tr>
-						<td><c:out value="${aquisicao.ticker1.codigo}"></c:out></td>
-						<td><c:out value="${aquisicao.ticker2.codigo}"></c:out></td>
-						<td><c:out value="${aquisicao.dataEvento}"></c:out></td>
-						<td><c:out value="${aquisicao.proporcaoDeAcoes}"></c:out></td>
-						<td><c:out value="${aquisicao.precoPorAcao}"></c:out></td>
-					</tr>
-				</c:forEach>
-			</table>
-			<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
+						<th>Código da empresa compradora</th>
+						<th>Código da empresa adquirida</th>
+						<th>Data da aquisição</th>
+						<th>Proporção de ações</th>
+						<th>Preço por ação</th>
+						<th>Editar</th>
+					<tr>
+					<c:forEach items="${aquisicoes}" var="aquisicao" varStatus="loop">
+						<tr>
+							<td>
+							<input type="hidden" name="id_${loop.index}" value="${aquisicao.id}" />
+							<input class="form-control" type="text" value="${aquisicao.ticker1.codigo}" disabled id="id_codigo_empresa_compradora_${loop.index}" 
+									name="codigo_empresa_compradora_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="text" value="${aquisicao.ticker2.codigo}" disabled id="id_codigo_empresa_adquirida_${loop.index}" 
+									name="codigo_empresa_adquirida_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="date" value="${aquisicao.dataEvento}" disabled id="id_data_${loop.index}" name="data_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="number" min="0" step="0.00001" value="${aquisicao.proporcaoDeAcoes}" disabled 
+									id="id_proporcao_acoes_${loop.index}"  name="proporcao_acoes_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="number" min="0" step="0.00001" value="${aquisicao.precoPorAcao}" disabled 
+									id="id_preco_por_acao_${loop.index}" name="preco_por_acao_${loop.index}" />
+							</td>
+							<td>
+							<input type="checkbox" id="editar_${loop.index}" name="editar_${loop.index}" onchange="toggleForm(${loop.index})"/>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<button type="submit" class="btn btn-primary btn-sm">Salvar alterações</button>
+				<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
+			</form>
 		</div>
 	</div>
 </div>
