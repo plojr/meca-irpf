@@ -104,7 +104,7 @@ function adicionarLinha() {
 	index = index + 1;
 }
 </script>
-<title>Adicionar nota de corretagem</title>
+<title>Gerenciar nota de corretagem</title>
 </head>
 <body>
 <div class="container-fluid">

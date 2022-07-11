@@ -1,5 +1,5 @@
 <jsp:include page="header.jsp" />
-<title>Home</title>
+<title>Eventos</title>
 </head>
 <body>
 <div class="container-fluid">

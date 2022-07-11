@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header.jsp" />
-<title>Adicionar Fusão</title>
+<title>Gerenciar Fusão</title>
 <style>
 th, td {
 	text-align: center

@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header.jsp" />
-<title>Adicionar Bonificação</title>
+<title>Gerenciar Bonificação</title>
 <style>
 th, td {
 	text-align: center
