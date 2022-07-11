@@ -1,6 +1,5 @@
 package grp.meca.irpf.Controllers.Basico;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,28 +22,6 @@ public class TickerController {
 	@Autowired
 	private TickerRepository tickerRepository;
 	
-	@PostMapping("/editar_ticker")
-	public String editarTickerPost(@RequestParam Map<String, String> parametros, Model model) {
-		List<Ticker> tickers = tickerRepository.findAllByOrderByCodigo();
-		model.addAttribute("tickers", tickers);
-		int quantidade = Integer.parseInt(parametros.get("quantidade"));
-		for(int i = 0; i < quantidade; i++) {
-			if(parametros.containsKey("editar_" + i)) {
-				int id = Integer.parseInt(parametros.get("id_" + i));
-				String codigo = parametros.get("codigo_" + i);
-				String cnpj = parametros.get("cnpj_" + i);
-				boolean bdr = parametros.get("bdr_" + i).equals("Sim");
-				Ticker ticker = new Ticker();
-				ticker.setId(id);
-				ticker.setCodigo(codigo);
-				ticker.setCnpj(cnpj);
-				ticker.setBdr(bdr);
-				tickerRepository.save(ticker);
-			}
-		}
-		return "redirect:/basico/ticker";
-	}
-	
 	@GetMapping("/ticker")
 	public String adicionarTickerGet(Model model) {
 		model.addAttribute("tickers", tickerRepository.findAllByOrderByCodigo());
@@ -64,5 +41,23 @@ public class TickerController {
 		return "redirect:/basico/ticker";
 	}
 	
-	
+	@PostMapping("/editar_ticker")
+	public String editarTickerPost(@RequestParam Map<String, String> parametros, Model model) {
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				String codigo = parametros.get("codigo_" + i);
+				String cnpj = parametros.get("cnpj_" + i);
+				boolean bdr = parametros.get("bdr_" + i).equals("Sim");
+				Ticker ticker = new Ticker();
+				ticker.setId(id);
+				ticker.setCodigo(codigo);
+				ticker.setCnpj(cnpj);
+				ticker.setBdr(bdr);
+				tickerRepository.save(ticker);
+			}
+		}
+		return "redirect:/basico/ticker";
+	}
 }
