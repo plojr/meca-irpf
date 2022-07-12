@@ -28,7 +28,7 @@ public class GrupamentoController {
 	
 	@GetMapping("/grupamento")
 	public String adicionarGrupamentoGet(Model model) {
-		model.addAttribute("grupamentos", grupamentoRepository.findAll());
+		model.addAttribute("grupamentos", grupamentoRepository.findAllByOrderByDataEvento());
 		return "eventos/grupamento";
 	}
 	
@@ -42,6 +42,23 @@ public class GrupamentoController {
 		Grupamento grupamento = new Grupamento(ticker, data, proporcao);
 		grupamentoRepository.save(grupamento);
 		model.addAttribute("grupamentos", grupamentoRepository.findAll());
+		return "redirect:/eventos/grupamento";
+	}
+	
+	@PostMapping("/editar_grupamento")
+	public String editarGrupamentoPost(@RequestParam Map<String, String> parametros) {
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				Ticker empresa = tickerRepository.findByCodigo(parametros.get("codigo_" + i));
+				LocalDate data = LocalDate.parse(parametros.get("data_" + i));
+				double proporcaoDeAcoes = Double.parseDouble(parametros.get("proporcao_" + i));
+				Grupamento grupamento = new Grupamento(empresa, data, proporcaoDeAcoes);
+				grupamento.setId(id);
+				grupamentoRepository.save(grupamento);
+			}
+		}
 		return "redirect:/eventos/grupamento";
 	}
 }

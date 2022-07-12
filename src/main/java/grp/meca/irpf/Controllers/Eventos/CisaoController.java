@@ -33,7 +33,7 @@ public class CisaoController {
 	}
 	
 	@PostMapping("/cisao")
-	public String cisaoPost(@RequestParam Map<String, String> parametros, Model model) {
+	public String cisaoPost(@RequestParam Map<String, String> parametros) {
 		Ticker tickerEmpresaOriginal = tickerRepository.findByCodigo(parametros.get("codigo_empresa_original"));
 		if(tickerEmpresaOriginal == null)
 			tickerEmpresaOriginal = tickerRepository.save(new Ticker(parametros.get("codigo_empresa_original")));
@@ -45,6 +45,26 @@ public class CisaoController {
 		double proporcao = Double.parseDouble(parametros.get("proporcao"));
 		Cisao cisao = new Cisao(tickerEmpresaOriginal, data, tickerNovaEmpresa, parteCindida, proporcao);
 		cisaoRepository.save(cisao);
+		return "redirect:/eventos/cisao";
+	}
+	
+	@PostMapping("/editar_cisao")
+	public String editarCisaoPost(@RequestParam Map<String, String> parametros) {
+		System.out.println("|" + parametros.get("quantidade") + "|");
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				Ticker empresaOriginal = tickerRepository.findByCodigo(parametros.get("codigo_empresa_original_" + i));
+				Ticker novaEmpresa = tickerRepository.findByCodigo(parametros.get("codigo_nova_empresa_" + i));
+				LocalDate data = LocalDate.parse(parametros.get("data_" + i));
+				double parteCindida = Double.parseDouble(parametros.get("parte_cindida_" + i));
+				double proporcao = Double.parseDouble(parametros.get("proporcao_" + i));
+				Cisao cisao = new Cisao(empresaOriginal, data, novaEmpresa, parteCindida, proporcao);
+				cisao.setId(id);
+				cisaoRepository.save(cisao);
+			}
+		}
 		return "redirect:/eventos/cisao";
 	}
 }

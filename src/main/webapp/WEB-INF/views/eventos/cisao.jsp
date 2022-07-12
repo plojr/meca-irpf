@@ -8,6 +8,15 @@ th, td {
 	text-align: center
 }
 </style>
+<script>
+function toggleForm(index) {
+	document.getElementById("codigo_empresa_original_" + index).disabled = !document.getElementById("codigo_empresa_original_" + index).disabled;
+	document.getElementById("codigo_nova_empresa_" + index).disabled = !document.getElementById("codigo_nova_empresa_" + index).disabled;
+	document.getElementById("data_" + index).disabled = !document.getElementById("data_" + index).disabled;
+	document.getElementById("proporcao_" + index).disabled = !document.getElementById("proporcao_" + index).disabled;
+	document.getElementById("parte_cindida_" + index).disabled = !document.getElementById("parte_cindida_" + index).disabled;
+}
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -42,25 +51,48 @@ th, td {
 			</form>
 			<br />
 			<h3>Cisões existentes</h3>
-			<table class="table table-bordered">
-				<tr>
-					<th>Código da empresa original</th>
-					<th>Código da nova empresa</th>
-					<th>Data da cisão</th>
-					<th>Parte cindida</th>
-					<th>Proporção de ações</th>
-				<tr>
-				<c:forEach items="${cisoes}" var="cisao">
+			<form action="editar_cisao" method="post">
+				<input type="hidden" name="quantidade" value="${cisoes.size()}" />
+				<table class="table table-bordered">
 					<tr>
-						<td><c:out value="${cisao.ticker1.codigo}"></c:out></td>
-						<td><c:out value="${cisao.ticker2.codigo}"></c:out></td>
-						<td><c:out value="${cisao.dataEvento}"></c:out></td>
-						<td><c:out value="${cisao.parteCindida}%"></c:out></td>
-						<td><c:out value="${cisao.proporcaoDeAcoes}"></c:out></td>
-					</tr>
-				</c:forEach>
-			</table>
-			<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
+						<th>Código da empresa original</th>
+						<th>Código da nova empresa</th>
+						<th>Data da cisão</th>
+						<th>Parte cindida %</th>
+						<th>Proporção de ações</th>
+					<tr>
+					<c:forEach items="${cisoes}" var="cisao" varStatus="loop">
+						<tr>
+							<td>
+							<input type="hidden" name="id_${loop.index}" value="${cisao.id}" />
+							<input class="form-control" type="text" value="${cisao.ticker1.codigo}" disabled 
+									id="codigo_empresa_original_${loop.index}" name="codigo_empresa_original_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="text" value="${cisao.ticker2.codigo}" disabled 
+									id="codigo_nova_empresa_${loop.index}" name="codigo_nova_empresa_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="date" value="${cisao.dataEvento}" disabled id="data_${loop.index}" 
+									name="data_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="number" min="0" step="0.00001" value="${cisao.parteCindida}" disabled 
+									id="parte_cindida_${loop.index}"  name="parte_cindida_${loop.index}" />
+							</td>
+							<td>
+							<input class="form-control" type="number" min="0" step="0.00001" value="${cisao.proporcaoDeAcoes}" disabled 
+									id="proporcao_${loop.index}"  name="proporcao_${loop.index}" />
+							</td>
+							<td>
+								<input type="checkbox" id="editar_${loop.index}" name="editar_${loop.index}" onchange="toggleForm(${loop.index})"/>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<button type="submit" class="btn btn-primary btn-sm">Salvar alterações</button>
+				<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
+			</form>
 		</div>
 	</div>
 </div>

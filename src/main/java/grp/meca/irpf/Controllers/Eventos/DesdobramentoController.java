@@ -28,7 +28,7 @@ public class DesdobramentoController {
 	
 	@GetMapping("/desdobramento")
 	public String desdobramentoGet(Model model) {
-		model.addAttribute("desdobramentos", desdobramentoRepository.findAll());
+		model.addAttribute("desdobramentos", desdobramentoRepository.findAllByOrderByDataEvento());
 		return "eventos/desdobramento";
 	}
 	
@@ -44,6 +44,23 @@ public class DesdobramentoController {
 		Desdobramento desdobramento = new Desdobramento(ticker, data, proporcao);
 		desdobramentoRepository.save(desdobramento);
 		model.addAttribute("desdobramentos", desdobramentoRepository.findAll());
+		return "redirect:/eventos/desdobramento";
+	}
+	
+	@PostMapping("/editar_desdobramento")
+	public String editarDesdobramentoPost(@RequestParam Map<String, String> parametros) {
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				Ticker empresa = tickerRepository.findByCodigo(parametros.get("codigo_" + i));
+				LocalDate data = LocalDate.parse(parametros.get("data_" + i));
+				double proporcaoDeAcoes = Double.parseDouble(parametros.get("proporcao_" + i));
+				Desdobramento desdobramento = new Desdobramento(empresa, data, proporcaoDeAcoes);
+				desdobramento.setId(id);
+				desdobramentoRepository.save(desdobramento);
+			}
+		}
 		return "redirect:/eventos/desdobramento";
 	}
 }
