@@ -48,7 +48,7 @@ public class CorretagemController {
 				Double.parseDouble(parametros.get("valor_liquido"))));
 		//Adicionar cada ordem setando o valor da nota de corretagem
 		for(int i = 1; i <= Integer.parseInt(parametros.get("numero_de_ordens")); i++) {
-			System.out.println(i);
+			//System.out.println(i);
 			String codigo = parametros.get("ticker"+i);
 			Ticker ticker = tickerRepository.findByCodigo(codigo);
 			if(ticker == null) {

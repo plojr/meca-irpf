@@ -33,7 +33,7 @@ public class GrupamentoController {
 	}
 	
 	@PostMapping("/grupamento")
-	public String adicionarGrupamentoPost(@RequestParam Map<String, String> parametros, Model model) {
+	public String adicionarGrupamentoPost(@RequestParam Map<String, String> parametros) {
 		Ticker ticker = tickerRepository.findByCodigo(parametros.get("codigo"));
 		if(ticker == null)
 			ticker = tickerRepository.save(new Ticker(parametros.get("codigo")));
@@ -41,7 +41,6 @@ public class GrupamentoController {
 		double proporcao = Double.parseDouble(parametros.get("proporcao"));
 		Grupamento grupamento = new Grupamento(ticker, data, proporcao);
 		grupamentoRepository.save(grupamento);
-		model.addAttribute("grupamentos", grupamentoRepository.findAll());
 		return "redirect:/eventos/grupamento";
 	}
 	

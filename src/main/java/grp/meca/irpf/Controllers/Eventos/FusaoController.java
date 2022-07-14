@@ -46,4 +46,27 @@ public class FusaoController {
 		fusaoRepository.save(new Fusao(tickerEmpresa1, data, tickerEmpresa2, tickerNovaEmpresa, proporcaoEmpresa1, proporcaoEmpresa2));
 		return "redirect:/eventos/fusao";
 	}
+	
+	@PostMapping("/editar_fusao")
+	public String editarFusaoPost(@RequestParam Map<String, String> parametros) {
+		int quantidade = Integer.parseInt(parametros.get("quantidade"));
+		for(int i = 0; i < quantidade; i++) {
+			if(parametros.containsKey("editar_" + i)) {
+				int id = Integer.parseInt(parametros.get("id_" + i));
+				Ticker empresa1 = tickerRepository.findByCodigo(parametros.get("codigo_1_" + i));
+				if(empresa1 == null) empresa1 = tickerRepository.save(new Ticker(parametros.get("codigo_1_" + i)));
+				Ticker empresa2 = tickerRepository.findByCodigo(parametros.get("codigo_2_" + i));
+				if(empresa2 == null) empresa2 = tickerRepository.save(new Ticker(parametros.get("codigo_2_" + i)));
+				Ticker novaEmpresa = tickerRepository.findByCodigo(parametros.get("codigo_nova_" + i));
+				if(novaEmpresa == null) novaEmpresa = tickerRepository.save(new Ticker(parametros.get("codigo_nova_" + i)));
+				LocalDate data = LocalDate.parse(parametros.get("data_" + i));
+				double proporcaoDeAcoes1 = Double.parseDouble(parametros.get("proporcao_empresa_1_" + i));
+				double proporcaoDeAcoes2 = Double.parseDouble(parametros.get("proporcao_empresa_2_" + i));
+				Fusao fusao = new Fusao(empresa1, data, empresa2, novaEmpresa, proporcaoDeAcoes1, proporcaoDeAcoes2);
+				fusao.setId(id);
+				fusaoRepository.save(fusao);
+			}
+		}
+		return "redirect:/eventos/fusao";
+	}
 }

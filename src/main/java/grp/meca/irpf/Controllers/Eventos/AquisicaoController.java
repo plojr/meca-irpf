@@ -46,7 +46,7 @@ public class AquisicaoController {
 	}
 	
 	@PostMapping("/editar_aquisicao")
-	public String editarAquisicaoPost(@RequestParam Map<String, String> parametros, Model model) {
+	public String editarAquisicaoPost(@RequestParam Map<String, String> parametros) {
 		int quantidade = Integer.parseInt(parametros.get("quantidade"));
 		for(int i = 0; i < quantidade; i++) {
 			if(parametros.containsKey("editar_" + i)) {
