@@ -41,8 +41,14 @@ public class TickerController {
 		return "redirect:/basico/ticker";
 	}
 	
+	@GetMapping("/deletar_ticker")
+	public String deletarTicker(@ModelAttribute(value="id") int id) {
+		tickerRepository.deleteById(id);
+		return "redirect:/basico/ticker";
+	}
+	
 	@PostMapping("/editar_ticker")
-	public String editarTickerPost(@RequestParam Map<String, String> parametros, Model model) {
+	public String editarTickerPost(@RequestParam Map<String, String> parametros) {
 		int quantidade = Integer.parseInt(parametros.get("quantidade"));
 		for(int i = 0; i < quantidade; i++) {
 			if(parametros.containsKey("editar_" + i)) {

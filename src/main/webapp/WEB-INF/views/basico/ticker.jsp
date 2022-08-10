@@ -43,6 +43,7 @@ function toggleForm(index) {
 			<input type="hidden" name="quantidade" value="${tickers.size()}" />
 			<table class="table table-bordered">
 				<tr>
+					<th>Deletar</th>
 					<th>Código</th>
 					<th>CNPJ</th>
 					<th>BDR?</th>
@@ -50,6 +51,11 @@ function toggleForm(index) {
 				<tr>
 				<c:forEach items="${tickers}" var="ticker" varStatus="loop">
 					<tr>
+						<td>
+							<a href=<c:out value="deletar_ticker?id=${ticker.id}"></c:out>>
+								<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+							</a>
+						</td>
 						<td>
 							<input type="hidden" name="id_${loop.index}" value="${ticker.id}" />
 							<input type="text" value="${ticker.codigo}" disabled id="codigo_${loop.index}" name="codigo_${loop.index}" />
