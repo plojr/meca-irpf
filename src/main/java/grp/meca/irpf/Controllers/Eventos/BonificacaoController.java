@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +42,12 @@ public class BonificacaoController {
 		double proporcao = Double.parseDouble(parametros.get("proporcao"));
 		double preco = Double.parseDouble(parametros.get("preco"));
 		bonificacaoRepository.save(new Bonificacao(ticker, data, proporcao, preco));
+		return "redirect:/eventos/bonificacao";
+	}
+	
+	@GetMapping("/deletar_bonificacao")
+	public String deletarBonificacao(@ModelAttribute(value="id") int id) {
+		bonificacaoRepository.deleteById(id);
 		return "redirect:/eventos/bonificacao";
 	}
 	

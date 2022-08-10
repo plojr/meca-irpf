@@ -6,7 +6,6 @@
 
 package grp.meca.irpf.Models.Basico;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +37,7 @@ public class Ordem {
 	@Column(nullable = false)
 	private int quantidade;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id", nullable = false)
 	private Ticker ticker;
 	

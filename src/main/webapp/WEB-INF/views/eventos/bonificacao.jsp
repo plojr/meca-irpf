@@ -50,6 +50,7 @@ function toggleForm(index) {
 				<input type="hidden" name="quantidade" value="${bonificacoes.size()}" />
 				<table class="table table-bordered">
 					<tr>
+						<th>Deletar</th>
 						<th>Código</th>
 						<th>Data da bonificação</th>
 						<th>Proporção</th>
@@ -58,6 +59,11 @@ function toggleForm(index) {
 					<tr>
 					<c:forEach items="${bonificacoes}" var="bonificacao" varStatus="loop">
 						<tr>
+							<td>
+								<a href=<c:out value="deletar_bonificacao?id=${bonificacao.id}"></c:out>>
+									<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+								</a>
+							</td>
 							<td>
 								<input type="hidden" name="id_${loop.index}" value="${bonificacao.id}" />
 								<input class="form-control" type="text" value="${bonificacao.ticker1.codigo}" disabled 
