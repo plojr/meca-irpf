@@ -28,7 +28,6 @@ package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -55,7 +54,7 @@ public abstract class EventoExtraordinario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id_1", nullable = false)
 	private Ticker ticker1;
 	

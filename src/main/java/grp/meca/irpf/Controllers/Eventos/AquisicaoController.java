@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +43,12 @@ public class AquisicaoController {
 		Double proporcaoAcoes = parametros.get("proporcao_acoes").equals("") ? 0. : Double.parseDouble(parametros.get("proporcao_acoes"));
 		Double precoPorAcao = parametros.get("preco_por_acao").equals("") ? 0. : Double.parseDouble(parametros.get("preco_por_acao"));
 		aquisicaoRepository.save(new Aquisicao(tickerEmpresaCompradora, data, tickerEmpresaAdquirida, proporcaoAcoes, precoPorAcao));
+		return "redirect:/eventos/aquisicao";
+	}
+	
+	@GetMapping("/deletar_aquisicao")
+	public String deletarAquisicao(@ModelAttribute(value="id") int id) {
+		aquisicaoRepository.deleteById(id);
 		return "redirect:/eventos/aquisicao";
 	}
 	

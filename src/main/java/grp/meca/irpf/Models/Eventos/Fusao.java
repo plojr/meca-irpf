@@ -2,7 +2,6 @@ package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -29,12 +28,12 @@ public class Fusao extends EventoExtraordinario {
 	}
 	
 	// Esta é a empresa com a qual haverá a fusão.
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id_2", nullable = false)
 	private Ticker ticker2;
 	
 	// Esta é a empresa que vai surgir da fusão.
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id_nova_empresa", nullable = false)
 	private Ticker tickerNovaEmpresa;
 	

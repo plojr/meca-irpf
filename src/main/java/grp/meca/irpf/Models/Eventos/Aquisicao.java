@@ -2,7 +2,6 @@ package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -27,7 +26,7 @@ public class Aquisicao extends EventoExtraordinario {
 	}
 	
 	// Esta é a empresa que será adquirida.
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id_2", nullable = false)
 	private Ticker ticker2;
 	

@@ -16,7 +16,6 @@ package grp.meca.irpf.Models.Eventos;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -41,7 +40,7 @@ public class Cisao extends EventoExtraordinario {
 	}
 
 	// Esta é a nova empresa.
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ticker_id_2", nullable = false)
 	private Ticker ticker2;
 	
