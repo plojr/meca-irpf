@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,13 @@ public class CisaoController {
 		model.addAttribute("cisoes", cisaoRepository.findAll());
 		return "eventos/cisao";
 	}
+	
+	@GetMapping("/deletar_cisao")
+	public String deletarCisao(@ModelAttribute(value="id") int id) {
+		cisaoRepository.deleteById(id);
+		return "redirect:/eventos/cisao";
+	}
+	
 	
 	@PostMapping("/cisao")
 	public String cisaoPost(@RequestParam Map<String, String> parametros) {

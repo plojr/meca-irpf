@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,12 @@ public class GrupamentoController {
 	public String adicionarGrupamentoGet(Model model) {
 		model.addAttribute("grupamentos", grupamentoRepository.findAllByOrderByDataEvento());
 		return "eventos/grupamento";
+	}
+	
+	@GetMapping("/deletar_grupamento")
+	public String deletarGrupamento(@ModelAttribute(value="id") int id) {
+		grupamentoRepository.deleteById(id);
+		return "redirect:/eventos/grupamento";
 	}
 	
 	@PostMapping("/grupamento")

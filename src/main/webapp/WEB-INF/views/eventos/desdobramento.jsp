@@ -44,6 +44,7 @@ function toggleForm(index) {
 				<input type="hidden" name="quantidade" value="${desdobramentos.size()}" />
 				<table class="table table-bordered">
 					<tr>
+						<th>Deletar</th>
 						<th>Código</th>
 						<th>Data do desdobramento</th>
 						<th>Proporção</th>
@@ -51,6 +52,11 @@ function toggleForm(index) {
 					<tr>
 					<c:forEach items="${desdobramentos}" var="desdobramento" varStatus="loop">
 						<tr>
+							<td>
+								<a href=<c:out value="deletar_desdobramento?id=${desdobramento.id}"></c:out>>
+									<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+								</a>
+							</td>
 							<td>
 								<input type="hidden" name="id_${loop.index}" value="${desdobramento.id}" />
 								<input class="form-control" type="text" value="${desdobramento.ticker1.codigo}" disabled 

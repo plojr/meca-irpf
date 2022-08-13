@@ -55,6 +55,7 @@ function toggleForm(index) {
 				<input type="hidden" name="quantidade" value="${cisoes.size()}" />
 				<table class="table table-bordered">
 					<tr>
+						<th>Deletar</th>
 						<th>Código da empresa original</th>
 						<th>Código da nova empresa</th>
 						<th>Data da cisão</th>
@@ -63,6 +64,11 @@ function toggleForm(index) {
 					<tr>
 					<c:forEach items="${cisoes}" var="cisao" varStatus="loop">
 						<tr>
+							<td>
+								<a href=<c:out value="deletar_cisao?id=${cisao.id}"></c:out>>
+									<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+								</a>
+							</td>
 							<td>
 							<input type="hidden" name="id_${loop.index}" value="${cisao.id}" />
 							<input class="form-control" type="text" value="${cisao.ticker1.codigo}" disabled 

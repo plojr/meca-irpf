@@ -44,6 +44,7 @@ function toggleForm(index) {
 				<input type="hidden" name="quantidade" value="${grupamentos.size()}" />
 				<table class="table table-bordered">
 					<tr>
+						<th>Deletar</th>
 						<th>Código</th>
 						<th>Data do grupamento</th>
 						<th>Proporção</th>
@@ -51,6 +52,11 @@ function toggleForm(index) {
 					<tr>
 					<c:forEach items="${grupamentos}" var="grupamento" varStatus="loop">
 						<tr>
+							<td>
+								<a href=<c:out value="deletar_grupamento?id=${grupamento.id}"></c:out>>
+									<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+								</a>
+							</td>
 							<td>
 								<input type="hidden" name="id_${loop.index}" value="${grupamento.id}" />
 								<input class="form-control" type="text" value="${grupamento.ticker1.codigo}" disabled 

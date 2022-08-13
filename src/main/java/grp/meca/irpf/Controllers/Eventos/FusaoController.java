@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,12 @@ public class FusaoController {
 	public String fusaoGet(Model model) {
 		model.addAttribute("fusoes", fusaoRepository.findAll());
 		return "eventos/fusao";
+	}
+
+	@GetMapping("/deletar_fusao")
+	public String deletarFusao(@ModelAttribute(value="id") int id) {
+		fusaoRepository.deleteById(id);
+		return "redirect:/eventos/fusao";
 	}
 	
 	@PostMapping("fusao")
