@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,14 @@ public class CorretagemController {
 		corretagens.forEach(nc -> nc.setOrdens(ordemRepository.findByNotaDeCorretagem(nc)));
 		model.addAttribute("corretagens", corretagens);
 		return "basico/corretagem";
+	}
+	
+	@GetMapping("/deletar_corretagem")
+	public String deletarCorretagem(@ModelAttribute(value="id") int id) {
+		NotaDeCorretagem nc = corretagemRepository.getReferenceById(id);
+		ordemRepository.findByNotaDeCorretagem(nc).forEach(ordem -> ordemRepository.deleteById(ordem.getId()));
+		corretagemRepository.deleteById(id);
+		return "redirect:/basico/corretagem";
 	}
 	
 	@PostMapping("/corretagem")

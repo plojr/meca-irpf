@@ -103,6 +103,12 @@ function adicionarLinha() {
 	sizeElement.value = index;
 	index = index + 1;
 }
+function toggleForm(index) {
+	document.getElementById("tipo_" + index).disabled = !document.getElementById("tipo_" + index).disabled;
+	document.getElementById("quantidade_" + index).disabled = !document.getElementById("quantidade_" + index).disabled;
+	document.getElementById("codigo_" + index).disabled = !document.getElementById("codigo_" + index).disabled;
+	document.getElementById("preco_" + index).disabled = !document.getElementById("preco_" + index).disabled;
+}
 </script>
 <title>Gerenciar nota de corretagem</title>
 </head>
@@ -140,29 +146,64 @@ function adicionarLinha() {
 				<div><label>Data:</label> <span><c:out value="${corretagem.data}"></c:out></span></div>
 				<div><label>Valor líquido:</label> <span><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" 
 							value="${corretagem.valorLiquido}" /></span></div>
-				<span>Ordens</span>
-				<table class="table table-bordered">
-				<tr>
-					<th>Tipo</th>
-					<th>Quantidade</th>
-					<th>Ticker</th>
-					<th>Preço</th>
-				</tr>
-				<c:forEach items="${corretagem.ordens}" var="ordem">
-				<tr>
-					<c:if test="${ordem.tipo eq 'c'.charAt(0)}">
-						<td><c:out value="Compra"></c:out></td>
-					</c:if>
-					<c:if test="${ordem.tipo eq 'v'.charAt(0)}">
-						<td><c:out value="Venda"></c:out></td>
-					</c:if>
-					<td><c:out value="${ordem.quantidade}"></c:out></td>
-					<td><c:out value="${ordem.ticker.codigo}"></c:out></td>
-					<!-- td><c:out value="${ordem.preco}"></c:out></td-->
-					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${ordem.preco}" /></td>
-				</tr>
-				</c:forEach>
-				</table>
+				<div>Deletar?
+					<a href="deletar_corretagem?id=${corretagem.id}">
+						<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+					</a> 
+				</div>
+				<form method="post" action="editar_ordem">
+					<span>Ordens</span>
+					<table class="table table-bordered">
+					<tr>
+						<th>Deletar</th>
+						<th>Tipo</th>
+						<th>Quantidade</th>
+						<th>Ticker</th>
+						<th>Preço</th>
+						<th>Editar</th>
+					</tr>
+					<c:forEach items="${corretagem.ordens}" var="ordem">
+					<tr>
+						<td>
+							<input type="hidden" name="id_${ordem.id}" value="${ordem.id}" />
+							<a href="deletar_ordem?id=${ordem.id}">
+								<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+							</a>
+						</td>
+						<c:if test="${ordem.tipo eq 'c'.charAt(0)}">
+							<td>
+								<input class="form-control" type="text" value="Compra" disabled 
+										id="tipo_${ordem.id}" name="tipo_${ordem.id}" />
+							</td>
+						</c:if>
+						<c:if test="${ordem.tipo eq 'v'.charAt(0)}">
+							<td>
+								<input class="form-control" type="text" value="Venda" disabled 
+										id="tipo_${ordem.id}" name="tipo_${ordem.id}" />
+							</td>
+						</c:if>
+						<td>
+							<input class="form-control" type="text" value="${ordem.quantidade}" disabled 
+										id="quantidade_${ordem.id}" name="quantidade_${ordem.id}" />
+						</td>
+						<td>
+							<input class="form-control" type="text" value="${ordem.ticker.codigo}" disabled 
+										id="codigo_${ordem.id}" name="codigo_${ordem.id}" />
+						</td>
+						<td>
+							<input class="form-control" type="text" 
+								value="<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${ordem.preco}" />" disabled 
+								id="preco_${ordem.id}" name="preco_${ordem.id}" />
+						</td>
+						<td>
+							<input type="checkbox" id="editar_${ordem.id}" name="editar_${ordem.id}" 
+								onchange="toggleForm(${ordem.id})"/>
+						</td>
+					</tr>
+					</c:forEach>
+					</table>
+					<button type="submit" class="btn btn-primary btn-sm">Salvar alterações</button>
+				</form>
 				<br />
 			</c:forEach>
 			<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
