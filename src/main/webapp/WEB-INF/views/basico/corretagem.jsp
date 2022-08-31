@@ -141,6 +141,15 @@ function toggleForm(index) {
 			</form>
 			<br />
 			<c:if test="${empty corretagens}">Não há dados.</c:if>
+			<c:if test="${not empty corretagens}">
+				<div>
+				<hr />
+				<span style="font-weight: bold;">Atenção!</span><br />Qualquer alteração e/ou deleção nas ordens e/ou notas de corretagem pode(m) ocasionar inconsistência na carteira.
+				Portanto preste bastante atenção ao deletar ou editar suas notas de corretagem como também as ordens.
+				Esta aplicação não trata as inconsistências.
+				<hr />
+				</div>
+			</c:if>
 			<c:forEach items="${corretagens}" var="corretagem">
 				<span>Nota de Corretagem</span>
 				<div><label>Data:</label> <span><c:out value="${corretagem.data}"></c:out></span></div>
