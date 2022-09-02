@@ -103,7 +103,11 @@ function adicionarLinha() {
 	sizeElement.value = index;
 	index = index + 1;
 }
-function toggleForm(index) {
+function toggleCorretagemForm(index) {
+	document.getElementById("data_" + index).disabled = !document.getElementById("data_" + index).disabled;
+	document.getElementById("valor_" + index).disabled = !document.getElementById("valor_" + index).disabled;
+}
+function toggleOrdemForm(index) {
 	document.getElementById("tipo_" + index).disabled = !document.getElementById("tipo_" + index).disabled;
 	document.getElementById("quantidade_" + index).disabled = !document.getElementById("quantidade_" + index).disabled;
 	document.getElementById("codigo_" + index).disabled = !document.getElementById("codigo_" + index).disabled;
@@ -147,19 +151,40 @@ function toggleForm(index) {
 				<span style="font-weight: bold;">Atenção!</span><br />Qualquer alteração e/ou deleção nas ordens e/ou notas de corretagem pode(m) ocasionar inconsistência na carteira.
 				Portanto preste bastante atenção ao deletar ou editar suas notas de corretagem como também as ordens.
 				Esta aplicação não trata as inconsistências.
-				<hr />
 				</div>
+				<hr />
 			</c:if>
 			<c:forEach items="${corretagens}" var="corretagem">
-				<span>Nota de Corretagem</span>
-				<div><label>Data:</label> <span><c:out value="${corretagem.data}"></c:out></span></div>
-				<div><label>Valor líquido:</label> <span><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" 
-							value="${corretagem.valorLiquido}" /></span></div>
-				<div>Deletar?
-					<a href="deletar_corretagem?id=${corretagem.id}">
-						<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
-					</a> 
-				</div>
+				<form method="post" action="editar_corretagem">
+					<span>Nota de Corretagem</span>
+					<table class="table table-bordered">
+					<tr>
+						<th>Deletar</th>
+						<th>Data</th>
+						<th>Valor</th>
+						<th>Editar</th>
+					</tr>
+					<tr>
+						<td>
+							<input type="hidden" name="id" value="${corretagem.id}" />
+							<a href="deletar_corretagem?id=${corretagem.id}">
+								<img width="30" height="30" src="${pageContext.request.contextPath}/imagens/lixeira.png" alt="Lixeira">
+							</a>
+						</td>
+						<td><input class="form-control" type="date" value="${corretagem.data}" 
+								id="data_${corretagem.id}" name="data_${corretagem.id}" disabled /></td>
+						<td><input class="form-control" size="5" type="number" step="0.01" value="${corretagem.valorLiquido}" 
+							disabled id="valor_${corretagem.id}" name="valor_${corretagem.id}" /></td>
+						<td>
+							<input type="checkbox" id="editar_${corretagem.id}" name="editar_${corretagem.id}" 
+								onchange="toggleCorretagemForm(${corretagem.id})"/>
+						</td>
+					</tr>
+					</table>
+					<div>
+						<input type="submit" value="Salvar alterações da nota de corretagem" class="btn btn-sm btn-primary" />
+					</div>
+				</form>
 				<form method="post" action="editar_ordem">
 					<span>Ordens</span>
 					<table class="table table-bordered">
@@ -192,7 +217,7 @@ function toggleForm(index) {
 							</td>
 						</c:if>
 						<td>
-							<input class="form-control" type="text" value="${ordem.quantidade}" disabled 
+							<input class="form-control" type="number" value="${ordem.quantidade}" disabled 
 										id="quantidade_${ordem.id}" name="quantidade_${ordem.id}" />
 						</td>
 						<td>
@@ -200,20 +225,20 @@ function toggleForm(index) {
 										id="codigo_${ordem.id}" name="codigo_${ordem.id}" />
 						</td>
 						<td>
-							<input class="form-control" type="text" 
+							<input class="form-control" type="number" step="0.01"
 								value="<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${ordem.preco}" />" disabled 
 								id="preco_${ordem.id}" name="preco_${ordem.id}" />
 						</td>
 						<td>
 							<input type="checkbox" id="editar_${ordem.id}" name="editar_${ordem.id}" 
-								onchange="toggleForm(${ordem.id})"/>
+								onchange="toggleOrdemForm(${ordem.id})"/>
 						</td>
 					</tr>
 					</c:forEach>
 					</table>
-					<button type="submit" class="btn btn-primary btn-sm">Salvar alterações</button>
+					<button type="submit" class="btn btn-primary btn-sm">Salvar alterações da ordem</button>
 				</form>
-				<br />
+				<hr />
 			</c:forEach>
 			<button class="btn" onclick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0;">Ir para o topo</button>
 		</div>

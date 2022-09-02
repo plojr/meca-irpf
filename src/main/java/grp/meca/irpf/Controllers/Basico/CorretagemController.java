@@ -42,6 +42,19 @@ public class CorretagemController {
 		return "basico/corretagem";
 	}
 	
+	@PostMapping("/editar_corretagem")
+	public String editarCorretagem(@RequestParam Map<String, String> parametros) {
+		if(parametros.get("id") != null && parametros.get("editar_" + parametros.get("id")) != null ) {
+			int id = Integer.parseInt(parametros.get("id"));
+			double valorCorretagem = Double.parseDouble(parametros.get("valor_" + id));
+			LocalDate data = LocalDate.parse(parametros.get("data_" + id));
+			NotaDeCorretagem nc = new NotaDeCorretagem(data, valorCorretagem);
+			nc.setId(id);
+			corretagemRepository.save(nc);
+		}
+		return "redirect:/basico/corretagem";
+	}
+	
 	@GetMapping("/deletar_corretagem")
 	public String deletarCorretagem(@ModelAttribute(value="id") int id) {
 		NotaDeCorretagem nc = corretagemRepository.getReferenceById(id);
